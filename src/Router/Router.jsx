@@ -12,6 +12,7 @@ import RoomDetails from "../Page/RoomDetails";
 import Home from "../Layout/Home";
 import ForgetPass from "../Authentication/ForgetPass";
 
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -61,6 +62,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      
 
     ],
   },

@@ -1,21 +1,32 @@
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../Provider/AuthProvider';
-import { Link } from 'react-router'; 
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
+import Rating from "react-rating";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editingId, setEditingId] = useState(null);
+  const [updatedDate, setUpdatedDate] = useState("");
+
+  const [selectedRoomId, setSelectedRoomId] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [reviewData, setReviewData] = useState({
+    rating: 0,
+    comment: "",
+  });
 
   const fetchBookings = () => {
-    axios.get(`http://localhost:3000/bookings/${user.email}`)
-      .then(res => {
+    axios
+      .get(`http://localhost:3000/bookings/${user.email}`)
+      .then((res) => {
         setBookings(res.data);
         setLoading(false);
       })
-      .catch(err => {
-        console.error('Failed to fetch bookings:', err);
+      .catch((err) => {
+        console.error("Failed to fetch bookings:", err);
         setLoading(false);
       });
   };
@@ -27,47 +38,201 @@ const MyBooking = () => {
   }, [user]);
 
   const handleCancel = (id) => {
-    const confirmCancel = confirm('Are you sure you want to cancel this booking?');
+    const confirmCancel = confirm("Are you sure you want to cancel?");
     if (!confirmCancel) return;
 
-    axios.delete(`http://localhost:3000/bookings/${id}`)
+    axios
+      .delete(`http://localhost:3000/bookings/${id}`)
       .then(() => {
-        fetchBookings(); // Refresh booking list
+        toast.success("Booking cancelled!");
+        fetchBookings();
       })
-      .catch(err => console.error('Error canceling booking:', err));
+      .catch((err) => console.error("Error canceling booking:", err));
   };
 
-  if (loading) return <p>Loading your bookings...</p>;
+  const handleEditClick = (booking) => {
+    setEditingId(booking._id);
+    setUpdatedDate(booking.bookedAt?.slice(0, 10));
+  };
 
-  if (!bookings.length) return <div className='text-center rounded-2xl bg-amber-300 space-y-3 py-3'>
-    <p>No bookings  found.</p>
-    <Link to='/allRoom'><button className='btn btn-p'>Booking Rooms</button></Link>
-  </div>;
+  const handleUpdate = (id) => {
+    axios
+      .patch(`http://localhost:3000/booking/${id}`, {
+        bookedAt: new Date(updatedDate),
+      })
+      .then(() => {
+        toast.success("Booking updated!");
+        setEditingId(null);
+        fetchBookings();
+      })
+      .catch((err) => {
+        toast.error("Update failed");
+        console.error(err);
+      });
+  };
+
+  const handleOpenReviewModal = (roomId) => {
+    setSelectedRoomId(roomId);
+    setShowModal(true);
+  };
+
+  const handleSubmitReview = () => {
+    const review = {
+      username: user.displayName,
+      email: user.email, 
+      roomId: selectedRoomId,
+      rating: reviewData.rating,
+      comment: reviewData.comment,
+      timestamp: new Date(),
+    };
+
+    axios
+      .post("http://localhost:3000/reviews", review)
+      .then(() => {
+        toast.success("Review submitted!");
+        setShowModal(false);
+        setReviewData({ rating: 0, comment: "" });
+      })
+      .catch(() => {
+        toast.error("Failed to submit review.");
+      });
+  };
+
+  if (loading) return <p className="text-center py-10">Loading...</p>;
+
+  if (!bookings.length)
+    return (
+      <div className="text-center mt-8 bg-amber-100 p-6 rounded-xl">
+        <p>No bookings found.</p>
+      </div>
+    );
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">My Bookings</h1>
-      <ul>
-        {bookings.map(booking => (
-          <li key={booking._id} className="mb-4 p-4 border rounded shadow-sm">
-            <h2 className="text-xl font-semibold">{booking.roomTitle}</h2>
-            <p>Price: ৳{booking.price}</p>
-            <p>Booked At: {new Date(booking.bookedAt).toLocaleString()}</p>
+    <div className="overflow-x-auto max-w-6xl mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6 text-center">🛌 My Bookings</h1>
 
-            <div className="flex gap-4 mt-3">
-              <Link to={`/details/${booking.roomId}`} className="mt-auto">
-                            <button className="btn-p w-full">Details</button>
-                          </Link>
+      <table className="table w-full border shadow-md rounded-lg">
+        <thead className="bg-gray-200">
+          <tr>
+            <th>Image</th>
+            <th>Room Name</th>
+            <th>Price</th>
+            <th>Booked Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookings.map((booking) => (
+            <tr key={booking._id}>
+              <td>
+                <img
+                  src={booking.image}
+                  className="w-20 h-16 object-cover rounded"
+                  alt="Room"
+                />
+              </td>
+              <td>{booking.roomTitle}</td>
+              <td>৳{booking.price}</td>
+              <td>
+                {editingId === booking._id ? (
+                  <div className="flex gap-2">
+                    <input
+                      type="date"
+                      value={updatedDate}
+                      onChange={(e) => setUpdatedDate(e.target.value)}
+                      className="border px-2 py-1 rounded"
+                    />
+                    <button
+                      onClick={() => handleUpdate(booking._id)}
+                      className="bg-green-500 text-white px-2 py-1 rounded"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => setEditingId(null)}
+                      className="bg-gray-400 text-white px-2 py-1 rounded"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                ) : (
+                  new Date(booking.bookedAt).toLocaleDateString()
+                )}
+              </td>
+              <td className="space-x-2">
+                <button
+                  onClick={() => handleCancel(booking._id)}
+                  className="bg-red-600 text-white px-3 py-1 rounded"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => handleOpenReviewModal(booking.roomId)}
+                  className="bg-yellow-500 text-white px-3 py-1 rounded"
+                >
+                  Review
+                </button>
+                <button
+                  onClick={() => handleEditClick(booking)}
+                  className="bg-blue-600 text-white px-3 py-1 rounded"
+                >
+                  Update Date
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Review Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-md w-96">
+            <h2 className="text-xl font-semibold mb-4">Submit Your Review</h2>
+            <p>
+              <strong>User:</strong> {user.displayName}
+            </p>
+            <div className="my-3">
+              <label className="block mb-1 font-medium">Rating</label>
+              <Rating
+                fractions={2}
+                initialRating={reviewData.rating}
+                onChange={(rate) =>
+                  setReviewData({ ...reviewData, rating: rate })
+                }
+                emptySymbol={<span className="text-gray-300 text-2xl">☆</span>}
+                fullSymbol={<span className="text-yellow-400 text-2xl">★</span>}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="block mb-1 font-medium">Comment</label>
+              <textarea
+                rows="3"
+                value={reviewData.comment}
+                onChange={(e) =>
+                  setReviewData({ ...reviewData, comment: e.target.value })
+                }
+                className="w-full border rounded px-2 py-1"
+                placeholder="Write your review"
+              ></textarea>
+            </div>
+            <div className="flex justify-end gap-2">
               <button
-                onClick={() => handleCancel(booking._id)}
-                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                onClick={() => setShowModal(false)}
+                className="bg-gray-400 text-white px-3 py-1 rounded"
               >
-                Cancel Booking
+                Close
+              </button>
+              <button
+                onClick={handleSubmitReview}
+                className="bg-green-600 text-white px-3 py-1 rounded"
+              >
+                Submit
               </button>
             </div>
-          </li>
-        ))}
-      </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

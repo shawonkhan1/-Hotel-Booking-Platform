@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router';  // react-router এর 'react-router-dom' ইউজ করো
 
 const FeaturedRooms = () => {
   const [rooms, setRooms] = useState([]);
+  const [reviewsCount, setReviewsCount] = useState({}); // { roomId: count }
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -11,6 +12,24 @@ const FeaturedRooms = () => {
       .then(data => {
         setRooms(data);
         setLoading(false);
+
+        // এখন প্রতিটি রুমের জন্য রিভিউ সংখ্যা ফেচ করো
+        data.forEach(room => {
+          fetch(`http://localhost:3000/reviews/${room._id}`)
+            .then(res => res.json())
+            .then(reviews => {
+              setReviewsCount(prev => ({
+                ...prev,
+                [room._id]: reviews.length
+              }));
+            })
+            .catch(() => {
+              setReviewsCount(prev => ({
+                ...prev,
+                [room._id]: 0
+              }));
+            });
+        });
       })
       .catch(err => {
         console.error(err);
@@ -32,20 +51,17 @@ const FeaturedRooms = () => {
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {rooms.map(room => (
-          <div key={room._id} className='border rounded-lg shadow-md p-4 flex flex-col'>
+          <Link to={`/details/${room._id}`} key={room._id} className='border rounded-lg shadow-md p-4 flex flex-col hover:shadow-lg transition cursor-pointer'>
             <img src={room.cover} alt={room.title} className='w-full h-48 object-cover rounded-md mb-4' />
             <h2 className='text-xl font-semibold'>{room.title}</h2>
-            <p className=''>Price: ৳{room.price}</p>
-            <p className=''>Category: {room.category}</p>
-            <p className=''>Guests: {room.maxGuests}</p>
-            <p className=''>Bed: {room.bedType}</p>
-            <p className=' mt-2 mb-4 flex-grow'>{room.description}</p>
+            <p>Price: ৳{room.price}</p>
+            <p>Category: {room.category}</p>
+            <p>Guests: {room.maxGuests}</p>
+            <p>Bed: {room.bedType}</p>
+            <p className='mt-2 mb-4 flex-grow'>{room.description}</p>
 
-            {/* Details Button */}
-          <Link to={`/details/${room._id}`} className="mt-auto">
-  <button className="btn-p w-full">Details</button>
-</Link>
-          </div>
+            <p><strong>Reviews: </strong>{reviewsCount[room._id] ?? 0}</p> {/* রিভিউ সংখ্যা দেখাবে */}
+          </Link>
         ))}
       </div>
     </div>
