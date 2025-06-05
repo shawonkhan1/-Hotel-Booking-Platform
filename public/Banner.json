@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Luxury Resort in Cox’s Bazar",
+    "description": "Enjoy your vacation with sea view rooms and premium service.",
+    "image": "https://i.ibb.co/mp5X7m2/pexels-ajaybhargavguduru-939715.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Comfortable Rooms in Dhaka",
+    "description": "Book your next business trip stay at affordable rates.",
+    "image": "https://i.ibb.co/4nGJvJ1r/pexels-pixabay-210604.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Experience Nature in Sylhet",
+    "description": "Relax in eco-friendly hotels surrounded by tea gardens.",
+    "image": "https://i.ibb.co/XkzNgM3P/pexels-pixabay-271618.jpg"
+  }
+]

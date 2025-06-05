@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.active {
+   color: #2563EB; /* Tailwind এর blue-600, সুন্দর মৃদু নীল */
+  font-weight: 600;
+}
+
+.btn-p {
+  @apply bg-[#1E3A8A] hover:bg-[#374151] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300;
+}
+.btn-banner {
+  @apply bg-[#1E3A8A] hover:bg-[#374151] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300;
+}
