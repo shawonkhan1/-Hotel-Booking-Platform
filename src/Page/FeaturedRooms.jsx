@@ -1,53 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router';  // react-router এর 'react-router-dom' ইউজ করো
+import { Link } from 'react-router'; 
 
 const FeaturedRoom = () => {
   const [rooms, setRooms] = useState([]);
-  const [reviewsCount, setReviewsCount] = useState({}); // { roomId: count }
+  const [reviewsCount, setReviewsCount] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/rooms')
-      .then(res => res.json())
-      .then(data => {
-        setRooms(data);
-        setLoading(false);
+    const fetchRoomsAndReviews = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/rooms');
+        const data = await res.json();
 
-        // এখন প্রতিটি রুমের জন্য রিভিউ সংখ্যা ফেচ করো
-        data.forEach(room => {
-          fetch(`http://localhost:3000/reviews/${room._id}`)
-            .then(res => res.json())
-            .then(reviews => {
-              setReviewsCount(prev => ({
-                ...prev,
-                [room._id]: reviews.length
-              }));
-            })
-            .catch(() => {
-              setReviewsCount(prev => ({
-                ...prev,
-                [room._id]: 0
-              }));
-            });
-        });
-      })
-      .catch(err => {
-        console.error(err);
+        const counts = {};
+
+        await Promise.all(
+          data.map(async room => {
+            try {
+              const res = await fetch(`http://localhost:3000/reviews/${room._id}`);
+              const reviews = await res.json();
+              counts[room._id] = reviews.length;
+            } catch {
+              counts[room._id] = 0;
+            }
+          })
+        );
+
+      
+        const sortedRooms = data
+          .sort((a, b) => (counts[b._id] || 0) - (counts[a._id] || 0))
+          .slice(0, 6);
+
+        setRooms(sortedRooms);
+        setReviewsCount(counts);
         setLoading(false);
-      });
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
+
+    fetchRoomsAndReviews();
   }, []);
 
   if (loading) {
     return (
       <div className="flex justify-center items-center h-40">
-        <span className="loading loading-spinner loading-lg text-blue-500"></span>
+        <span className="loading loading-spinner loading-lg text-blue-500 mr-2"></span>
+        <span>Loading rooms...</span>
       </div>
     );
   }
 
   return (
     <div className="p-4">
-      <h1 className='text-center font-bold text-4xl mb-8'>Our Featured Rooms</h1>
+      <h1 className='text-center font-bold text-4xl mb-8'>Top Rated Rooms by Review</h1>
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {rooms.map(room => (
@@ -60,7 +67,9 @@ const FeaturedRoom = () => {
             <p>Bed: {room.bedType}</p>
             <p className='mt-2 mb-4 flex-grow'>{room.description}</p>
 
-            <p><strong>Reviews: </strong>{reviewsCount[room._id] ?? 0}</p> {/* রিভিউ সংখ্যা দেখাবে */}
+           
+            <p><strong>Reviews: </strong>{reviewsCount[room._id] ?? 0}</p>
+          <button className='btn-p btn my-5'>Book Now</button>
           </Link>
         ))}
       </div>

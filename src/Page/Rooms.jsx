@@ -19,7 +19,6 @@ const Rooms = () => {
     setLoading(true);
     let url = "http://localhost:3000/rooms";
 
-    // যদি min এবং max প্রাইস থাকে, তাহলে query add করব
     if (minPrice !== "" && maxPrice !== "") {
       url += `?minPrice=${minPrice}&maxPrice=${maxPrice}`;
     }
@@ -37,11 +36,9 @@ const Rooms = () => {
   };
 
   useEffect(() => {
-    // প্রথমে ডিফল্ট রুমস নিয়ে আসা
     fetchRooms("", "");
   }, []);
 
-  // Dropdown পরিবর্তন হলে
   const handleFilterChange = (e) => {
     const selectedIndex = e.target.selectedIndex;
     const selected = priceRanges[selectedIndex];
@@ -79,26 +76,22 @@ const Rooms = () => {
       {/* Rooms Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {rooms.map((room) => (
-          <div
-            key={room._id}
-            className="border rounded-lg shadow-md p-4 flex flex-col"
-          >
-            <img
-              src={room.cover}
-              alt={room.title}
-              className="w-full h-48 object-cover rounded-md mb-4"
-            />
-            <h2 className="text-xl font-semibold">{room.title}</h2>
-            <p>Price: ৳{room.price}</p>
-            <p>Category: {room.category}</p>
-            <p>Guests: {room.maxGuests}</p>
-            <p>Bed: {room.bedType}</p>
-            <p className="mt-2 mb-4 flex-grow">{room.description}</p>
-
-            <Link to={`/details/${room._id}`} className="mt-auto">
-              <button className="btn-p w-full">Details</button>
-            </Link>
-          </div>
+          <Link key={room._id} to={`/details/${room._id}`} className="block">
+            <div className="border rounded-lg shadow-md p-4 flex flex-col hover:shadow-lg transition cursor-pointer">
+              <img
+                src={room.cover}
+                alt={room.title}
+                className="w-full h-48 object-cover rounded-md mb-4"
+              />
+              <h2 className="text-xl font-semibold">{room.title}</h2>
+              <p>Price: ৳{room.price}</p>
+              <p>Category: {room.category}</p>
+              <p>Guests: {room.maxGuests}</p>
+              <p>Bed: {room.bedType}</p>
+              <p className="mt-2 mb-4 flex-grow">{room.description}</p>
+              <button className="btn-p w-full mt-auto">Details</button>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
