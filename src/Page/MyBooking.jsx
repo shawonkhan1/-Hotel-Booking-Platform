@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import Rating from "react-rating";
+import moment from "moment";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
@@ -37,15 +38,30 @@ const MyBooking = () => {
     }
   }, [user]);
 
-  const handleCancel = (id) => {
-    const confirmCancel = confirm("Are you sure you want to cancel?");
+  // Booking cancellation with date check
+  const handleCancel = (booking) => {
+    // বুকিংয়ের তারিখ থেকে ১ দিন আগে পর্যন্ত ক্যানসেল করতে পারবে
+    const cancelDeadline = moment(booking.bookedAt).subtract(1, "days");
+    const now = moment();
+
+    if (now.isAfter(cancelDeadline)) {
+      toast.error("Sorry, booking can only be cancelled up to 1 day before the booked date.");
+      return;
+    }
+
+    const confirmCancel = window.confirm("Are you sure you want to cancel the booking?");
     if (!confirmCancel) return;
 
     axios
-      .delete(`http://localhost:3000/bookings/${id}`)
+      .delete(`http://localhost:3000/bookings/${booking._id}`)
       .then(() => {
         toast.success("Booking cancelled!");
         fetchBookings();
+
+        // রুম আবার available করতে PATCH কল
+        axios
+          .patch(`http://localhost:3000/rooms/available/${booking.roomId}`, { available: true })
+          .catch((err) => console.error("Failed to update room availability", err));
       })
       .catch((err) => console.error("Error canceling booking:", err));
   };
@@ -79,7 +95,7 @@ const MyBooking = () => {
   const handleSubmitReview = () => {
     const review = {
       username: user.displayName,
-      email: user.email, 
+      email: user.email,
       roomId: selectedRoomId,
       rating: reviewData.rating,
       comment: reviewData.comment,
@@ -161,7 +177,7 @@ const MyBooking = () => {
               </td>
               <td className="space-x-2">
                 <button
-                  onClick={() => handleCancel(booking._id)}
+                  onClick={() => handleCancel(booking)}
                   className="bg-red-600 text-white px-3 py-1 rounded"
                 >
                   Cancel

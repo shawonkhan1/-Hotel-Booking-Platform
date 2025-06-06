@@ -1,6 +1,8 @@
 import React from 'react';
 import Banner from '../Page/Banner';
-import FeaturedRooms from '../Page/FeaturedRooms';
+import FeaturedRoom from '../Page/FeaturedRooms';
+import AllReview from '../Page/AllReview';
+
 
 const Home = () => {
     return (
@@ -8,9 +10,12 @@ const Home = () => {
             <Banner></Banner>
             {/* Featured Rooms: */}
             <div className='mt-5'>
-                <FeaturedRooms></FeaturedRooms>
+                <FeaturedRoom></FeaturedRoom>
             </div>
-          
+            <div>
+                <AllReview></AllReview>
+            </div>
+        
         </div>
     );
 };

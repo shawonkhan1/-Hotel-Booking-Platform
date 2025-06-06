@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';  // react-router এর 'react-router-dom' ইউজ করো
 
-const FeaturedRooms = () => {
+const FeaturedRoom = () => {
   const [rooms, setRooms] = useState([]);
   const [reviewsCount, setReviewsCount] = useState({}); // { roomId: count }
   const [loading, setLoading] = useState(true);
@@ -68,4 +68,4 @@ const FeaturedRooms = () => {
   );
 };
 
-export default FeaturedRooms;
+export default FeaturedRoom;

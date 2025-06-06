@@ -11,12 +11,14 @@ import MyBooking from "../Page/MyBooking";
 import RoomDetails from "../Page/RoomDetails";
 import Home from "../Layout/Home";
 import ForgetPass from "../Authentication/ForgetPass";
+import ErrorPage from "../Layout/ErrorPage";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: HomeLayouts,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -65,5 +67,6 @@ export const router = createBrowserRouter([
       
 
     ],
+    
   },
 ]);
