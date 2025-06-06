@@ -23,7 +23,7 @@ const Reviews = () => {
   }
 
   return (
-    <div className="bg-gray-100 py-4">
+    <div className=" py-4">
       <h2 className="text-center text-2xl font-bold mb-4">User Reviews</h2>
       <Marquee pauseOnHover={true} gradient={false} speed={50}>
         {reviews.map((review) => (
@@ -31,7 +31,7 @@ const Reviews = () => {
             key={review._id}
             className="mx-4 bg-white p-4 rounded shadow-md min-w-[250px]"
           >
-            <p className="font-semibold">{review.username}</p>
+            <p className="font-semibold text-black">{review.username}</p>
             <p className="text-yellow-500">Rating: {"⭐".repeat(review.rating)}</p>
             <p className="italic text-gray-600 mt-2">"{review.comment}"</p>
             <p className="text-xs text-gray-400 mt-2">

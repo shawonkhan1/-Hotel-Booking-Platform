@@ -58,7 +58,7 @@ const MyBooking = () => {
         toast.success("Booking cancelled!");
         fetchBookings();
 
-        // রুম আবার available করতে PATCH কল
+       
         axios
           .patch(`http://localhost:3000/rooms/available/${booking.roomId}`, { available: true })
           .catch((err) => console.error("Failed to update room availability", err));
@@ -128,8 +128,8 @@ const MyBooking = () => {
       <h1 className="text-3xl font-bold mb-6 text-center">🛌 My Bookings</h1>
 
       <table className="table w-full border shadow-md rounded-lg">
-        <thead className="bg-gray-200">
-          <tr>
+        <thead className="bg-gray-200 ">
+          <tr className="text-black">
             <th>Image</th>
             <th>Room Name</th>
             <th>Price</th>
@@ -204,38 +204,39 @@ const MyBooking = () => {
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-md w-96">
-            <h2 className="text-xl font-semibold mb-4">Submit Your Review</h2>
+            <h2 className="text-xl font-semibold mb-4 text-black">Submit Your Review</h2>
             <p>
-              <strong>User:</strong> {user.displayName}
+              <strong className="text-black">User: {user.displayName}
+                </strong > 
             </p>
             <div className="my-3">
-              <label className="block mb-1 font-medium">Rating</label>
+              <label className="block mb-1 font-medium text-black">Rating</label>
               <Rating
                 fractions={2}
                 initialRating={reviewData.rating}
                 onChange={(rate) =>
                   setReviewData({ ...reviewData, rating: rate })
                 }
-                emptySymbol={<span className="text-gray-300 text-2xl">☆</span>}
+                emptySymbol={<span className="text-black text-2xl">☆</span>}
                 fullSymbol={<span className="text-yellow-400 text-2xl">★</span>}
               />
             </div>
             <div className="mb-3">
-              <label className="block mb-1 font-medium">Comment</label>
+              <label className="block text-black mb-1 font-medium">Comment</label>
               <textarea
                 rows="3"
                 value={reviewData.comment}
                 onChange={(e) =>
                   setReviewData({ ...reviewData, comment: e.target.value })
                 }
-                className="w-full border rounded px-2 py-1"
+                className="w-full text-black border rounded px-2 py-1"
                 placeholder="Write your review"
               ></textarea>
             </div>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setShowModal(false)}
-                className="bg-gray-400 text-white px-3 py-1 rounded"
+                className="bg-gray-400 text-black px-3 py-1 rounded"
               >
                 Close
               </button>

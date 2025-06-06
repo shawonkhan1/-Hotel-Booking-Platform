@@ -4,32 +4,37 @@ import FeaturedRoom from '../Page/FeaturedRooms';
 import AllReview from '../Page/AllReview';
 import Faq from '../Page/Faq';
 import Services from '../Page/Services';
+import SpecialOffer from '../Page/SpecialOffer';
+import { Helmet } from 'react-helmet';
 
 
 const Home = () => {
     return (
-        <div>
-            <Banner></Banner>
-            
-            {/* Featured Rooms: */}
+       <>
+        <div className='relative'>
+            <Helmet>
+                <title>Home</title>
+            </Helmet>
+            <SpecialOffer />
+            <Banner />
+
             <div className='mt-5'>
-                <FeaturedRoom></FeaturedRoom>
+                <FeaturedRoom />
             </div>
-          
-          {/* services */}
+
             <div className='mt-10'>
-                <Services></Services>
+                <Services />
             </div>
-            {/* faq */}
-              <div className='mt-10'>
-                <Faq></Faq>
+
+            <div className='mt-10'>
+                <Faq />
             </div>
-                {/* all revew */}
-              <div>
-                <AllReview></AllReview>
+
+            <div>
+                <AllReview />
             </div>
-        
         </div>
+       </>
     );
 };
 

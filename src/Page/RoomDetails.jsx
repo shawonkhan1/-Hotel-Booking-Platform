@@ -20,7 +20,7 @@ const RoomDetails = () => {
   useEffect(() => {
     setLoading(true);
 
-    // রুমের ডেটা লোড
+    
     axios
       .get(`http://localhost:3000/rooms/${id}`)
       .then((res) => {
@@ -32,7 +32,7 @@ const RoomDetails = () => {
         setLoading(false);
       });
 
-    // রুমের রিভিউ লোড
+  
   axios.get(`http://localhost:3000/reviews/${id}`)
       .then((res) => setReviews(res.data))
       .catch(() => setReviews([]));
@@ -207,7 +207,7 @@ const RoomDetails = () => {
                   selected={bookingDate}
                   onChange={(date) => setBookingDate(date)}
                   minDate={new Date()}
-                  className="w-full border-2 border-pink-400 rounded-xl px-4 py-3 focus:outline-none focus:border-pink-600"
+                  className="w-full text-black border-2 border-pink-400 rounded-xl px-4 py-3 focus:outline-none focus:border-pink-600"
                   dateFormat="dd/MM/yyyy"
                 />
               </div>
