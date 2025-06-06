@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router"; 
+import Loading from "../Components/Loading";
 
 const priceRanges = [
   { label: "All", min: "", max: "" },
@@ -7,7 +8,7 @@ const priceRanges = [
   { label: "৳1000 - ৳2000", min: 1000, max: 2000 },
   { label: "৳2000 - ৳3000", min: 2000, max: 3000 },
   { label: "৳3000 - ৳4000", min: 3000, max: 4000 },
-  { label: "৳4000+ ", min: 4000, max: 50000 },
+  { label: "৳4000+", min: 4000, max: 50000 },
 ];
 
 const Rooms = () => {
@@ -48,9 +49,7 @@ const Rooms = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-40">
-        <span className="loading loading-spinner loading-lg text-blue-500"></span>
-      </div>
+     <Loading></Loading>
     );
   }
 
@@ -59,7 +58,8 @@ const Rooms = () => {
       <h1 className="text-center font-bold text-4xl mb-6">Rooms</h1>
 
       {/* Filter Dropdown */}
-      <div className="mb-8 flex justify-center">
+      <div className="flex justify-end">
+ <div className="mb-8 flex justify-center">
         <select
           className="select select-bordered w-48"
           onChange={handleFilterChange}
@@ -72,12 +72,14 @@ const Rooms = () => {
           ))}
         </select>
       </div>
+      </div>
+     
 
       {/* Rooms Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {rooms.map((room) => (
-          <Link key={room._id} to={`/details/${room._id}`} className="block">
-            <div className="border rounded-lg shadow-md p-4 flex flex-col hover:shadow-lg transition cursor-pointer">
+          <Link key={room._id} to={`/details/${room._id}`} className="block h-full">
+            <div className="border rounded-lg shadow-md p-4 flex flex-col hover:shadow-lg transition cursor-pointer h-full">
               <img
                 src={room.cover}
                 alt={room.title}
@@ -89,7 +91,7 @@ const Rooms = () => {
               <p>Guests: {room.maxGuests}</p>
               <p>Bed: {room.bedType}</p>
               <p className="mt-2 mb-4 flex-grow">{room.description}</p>
-              <button className="btn-p w-full mt-auto">Details</button>
+              <button className="btn btn-p w-full mt-auto">Details</button>
             </div>
           </Link>
         ))}

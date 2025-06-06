@@ -3,7 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 import Register from "./Register";
-
+import Lottie from "lottie-react";
+import { Helmet } from "react-helmet";
+import logins from '../assets/Lottie/loginLottie.json'
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -56,7 +58,11 @@ const Login = () => {
   };
 
   return (
-    <div className="flex mt-[100px] md:mt-[150px] lg:mt-[200px] justify-center items-center">
+  <>
+   <Helmet>
+    <title>Login</title>
+   </Helmet>
+     <div className="md:flex text-base-content mt-[100px] md:mt-[150px] lg:mt-[200px] justify-center items-center">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body shadow-[0px_0px_8px_2px_#2ee235,0px_4px_6px_-1px_rgba(0,0,0,0.1)] rounded-2xl">
           <h1 className="text-3xl text-center  font-bold">
@@ -93,7 +99,7 @@ const Login = () => {
                 </button>
               </div>
               {/* login btn */}
-              <button type="submit" className="btn btn-neutral mt-4">
+              <button type="submit" className="btn btn-p mt-4">
                 Login
               </button>
 
@@ -142,12 +148,19 @@ const Login = () => {
             </form>
           )}
         </div>
+    
       </div>
 
-
+          {/* animiton */}
+          <div className='w-[500px]'>
+              <Lottie animationData={logins} loop={true} />
+          </div>
+          {/* animiton */}
      
     </div>
+  </>
   );
 };
 
 export default Login;
+ 

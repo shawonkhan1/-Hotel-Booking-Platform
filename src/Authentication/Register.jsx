@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
-
+import Lottie from "lottie-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../Components/Loading";
+import { Helmet } from "react-helmet";
+import register from '../assets/Lottie/Register.json'
 
 const Register = () => {
   const { createUser, setUser, updateuser, googleLogin } =
@@ -86,7 +88,12 @@ const Register = () => {
   };
 
   return (
-    <div className="flex mt-[100px] lg:mt-[200px] md:mt-[150px] justify-center items-center">
+    <>
+    <Helmet>
+      <title>Register</title>
+    </Helmet>
+    <div className="md:flex gap-20 text-base-content  mt-[100px] lg:mt-[200px] md:mt-[150px] justify-center items-center">
+    
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body shadow-[0px_0px_8px_2px_#2ee235,0px_4px_6px_-1px_rgba(0,0,0,0.1)] rounded-2xl">
           <h1 className="text-3xl text-center font-bold">
@@ -134,7 +141,7 @@ const Register = () => {
                 placeholder="Password"
               />
               {/* register btn */}
-              <button type="submit" className="btn btn-neutral mt-4 ">
+              <button type="submit" className="btn btn-p mt-4 ">
                 Register
               </button>
               {/* google login btn */}
@@ -183,7 +190,13 @@ const Register = () => {
           )}
         </div>
       </div>
+          {/* animiton add */}
+          <div className="lg:w-[500px]">
+              <Lottie animationData={register} loop={true} />
+          </div>
+          {/* animiton add */}
     </div>
+    </>
   );
 };
 

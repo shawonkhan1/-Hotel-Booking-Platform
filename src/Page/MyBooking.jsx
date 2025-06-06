@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import Rating from "react-rating";
 import moment from "moment";
+import Loading from "../Components/Loading";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
@@ -45,11 +46,15 @@ const MyBooking = () => {
     const now = moment();
 
     if (now.isAfter(cancelDeadline)) {
-      toast.error("Sorry, booking can only be cancelled up to 1 day before the booked date.");
+      toast.error(
+        "Sorry, booking can only be cancelled up to 1 day before the booked date."
+      );
       return;
     }
 
-    const confirmCancel = window.confirm("Are you sure you want to cancel the booking?");
+    const confirmCancel = window.confirm(
+      "Are you sure you want to cancel the booking?"
+    );
     if (!confirmCancel) return;
 
     axios
@@ -58,10 +63,14 @@ const MyBooking = () => {
         toast.success("Booking cancelled!");
         fetchBookings();
 
-       
         axios
-          .patch(`http://localhost:3000/rooms/available/${booking.roomId}`, { available: true })
-          .catch((err) => console.error("Failed to update room availability", err));
+          .patch(
+            `http://localhost:3000/rooms/available/${booking.roomId}`,
+            { available: true }
+          )
+          .catch((err) =>
+            console.error("Failed to update room availability", err)
+          );
       })
       .catch((err) => console.error("Error canceling booking:", err));
   };
@@ -72,6 +81,15 @@ const MyBooking = () => {
   };
 
   const handleUpdate = (id) => {
+    const today = moment().startOf('day');
+    const selectedDate = moment(updatedDate);
+
+    // Update only if selectedDate is today or later
+    if (selectedDate.isBefore(today)) {
+      toast.error("You cannot select a past date.");
+      return;
+    }
+
     axios
       .patch(`http://localhost:3000/booking/${id}`, {
         bookedAt: new Date(updatedDate),
@@ -114,7 +132,7 @@ const MyBooking = () => {
       });
   };
 
-  if (loading) return <p className="text-center py-10">Loading...</p>;
+  if (loading) return <Loading></Loading>;
 
   if (!bookings.length)
     return (
@@ -157,6 +175,7 @@ const MyBooking = () => {
                       value={updatedDate}
                       onChange={(e) => setUpdatedDate(e.target.value)}
                       className="border px-2 py-1 rounded"
+                      min={moment().format('YYYY-MM-DD')} // Prevent past date selection
                     />
                     <button
                       onClick={() => handleUpdate(booking._id)}
@@ -175,7 +194,7 @@ const MyBooking = () => {
                   new Date(booking.bookedAt).toLocaleDateString()
                 )}
               </td>
-              <td className="space-x-2">
+              <td className="space-x-2 flex flex-wrap gap-2">
                 <button
                   onClick={() => handleCancel(booking)}
                   className="bg-red-600 text-white px-3 py-1 rounded"
@@ -202,21 +221,20 @@ const MyBooking = () => {
 
       {/* Review Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-gray-100 bg-opacity-40 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-md w-96">
-            <h2 className="text-xl font-semibold mb-4 text-black">Submit Your Review</h2>
+            <h2 className="text-xl font-semibold mb-4 text-black">
+              Submit Your Review
+            </h2>
             <p>
-              <strong className="text-black">User: {user.displayName}
-                </strong > 
+              <strong className="text-black">User: {user.displayName}</strong>
             </p>
             <div className="my-3">
               <label className="block mb-1 font-medium text-black">Rating</label>
               <Rating
                 fractions={2}
                 initialRating={reviewData.rating}
-                onChange={(rate) =>
-                  setReviewData({ ...reviewData, rating: rate })
-                }
+                onChange={(rate) => setReviewData({ ...reviewData, rating: rate })}
                 emptySymbol={<span className="text-black text-2xl">☆</span>}
                 fullSymbol={<span className="text-yellow-400 text-2xl">★</span>}
               />
