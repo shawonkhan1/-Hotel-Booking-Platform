@@ -5,7 +5,7 @@ const SpecialOffer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsOpen(true), 2000); // ২ সেকেন্ড পরে modal open হবে
+    const timer = setTimeout(() => setIsOpen(true), 2000); 
     return () => clearTimeout(timer);
   }, []);
 

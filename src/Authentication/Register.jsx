@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../Components/Loading";
 
 const Register = () => {
   const { createUser, setUser, updateuser, googleLogin } =
@@ -88,12 +89,12 @@ const Register = () => {
     <div className="flex mt-[100px] lg:mt-[200px] md:mt-[150px] justify-center items-center">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body shadow-[0px_0px_8px_2px_#2ee235,0px_4px_6px_-1px_rgba(0,0,0,0.1)] rounded-2xl">
-          <h1 className="text-3xl text-center text-black font-bold">
+          <h1 className="text-3xl text-center font-bold">
             Register now!
           </h1>
 
           {loading ? (
-            <p className="text-center my-4 font-semibold">Loading...</p>
+            <Loading></Loading>
           ) : (
             <form onSubmit={handleRegister} className="fieldset">
               {/* name */}
@@ -102,7 +103,7 @@ const Register = () => {
                 required
                 name="name"
                 type="text"
-                className="input text-black"
+                className="input "
                 placeholder="Your Name"
               />
               {/* photo */}
@@ -111,7 +112,7 @@ const Register = () => {
                 required
                 name="photo"
                 type="text"
-                className="input text-black"
+                className="input "
                 placeholder="Photo URL"
               />
               {/* email */}
@@ -120,7 +121,7 @@ const Register = () => {
                 required
                 name="email"
                 type="email"
-                className="input text-black"
+                className="input "
                 placeholder="Your Email"
               />
               {/* password */}
@@ -129,7 +130,7 @@ const Register = () => {
                 required
                 name="password"
                 type="password"
-                className="input text-black"
+                className="input"
                 placeholder="Password"
               />
               {/* register btn */}

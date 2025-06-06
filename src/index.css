@@ -12,3 +12,18 @@
 .btn-banner {
   @apply bg-[#1E3A8A] hover:bg-[#374151] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300;
 }
+
+
+
+
+[data-theme="light"] {
+  /* light theme styles */
+  background-color: white;
+  color: black;
+}
+
+[data-theme="synthwave"] {
+  /* synthwave theme styles */
+  background-color: black;
+  color: white;
+}

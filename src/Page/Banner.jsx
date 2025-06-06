@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import Loading from '../Components/Loading';
 
 const Banner = () => {
   const [slides, setSlides] = useState([]);
@@ -18,7 +19,7 @@ const Banner = () => {
   }, []);
 
   if (slides.length === 0) {
-    return <p className="text-center py-20 text-gray-600">Loading banner...</p>;
+    return <Loading></Loading>;
   }
 
   return (

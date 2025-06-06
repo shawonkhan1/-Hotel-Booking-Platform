@@ -59,7 +59,7 @@ const Login = () => {
     <div className="flex mt-[100px] md:mt-[150px] lg:mt-[200px] justify-center items-center">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body shadow-[0px_0px_8px_2px_#2ee235,0px_4px_6px_-1px_rgba(0,0,0,0.1)] rounded-2xl">
-          <h1 className="text-3xl text-center text-black font-bold">
+          <h1 className="text-3xl text-center  font-bold">
             Login now!
           </h1>
 
@@ -73,7 +73,7 @@ const Login = () => {
                 required
                 name="email"
                 type="email"
-                className="input text-black"
+                 className="input"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -84,7 +84,7 @@ const Login = () => {
                 required
                 name="password"
                 type="password"
-                className="input text-black"
+                className="input"
                 placeholder="Password"
               />
               <div>

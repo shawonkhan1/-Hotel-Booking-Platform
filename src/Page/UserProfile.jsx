@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router";
+import Loading from "../Components/Loading";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
 
   if (!user) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="w-12 h-12 border-4 border-dashed rounded-full animate-spin border-green-700"></div>
-      </div>
+     <Loading></Loading>
     );
   }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router'; 
+import Loading from '../Components/Loading';
 
 const FeaturedRoom = () => {
   const [rooms, setRooms] = useState([]);
@@ -45,10 +46,7 @@ const FeaturedRoom = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-40">
-        <span className="loading loading-spinner loading-lg text-blue-500 mr-2"></span>
-        <span>Loading rooms...</span>
-      </div>
+      <Loading></Loading>
     );
   }
 
