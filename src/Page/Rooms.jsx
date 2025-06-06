@@ -88,8 +88,8 @@ const Rooms = () => {
               <h2 className="text-xl font-semibold">{room.title}</h2>
               <p>Price: ৳{room.price}</p>
               <p>Category: {room.category}</p>
-              <p>Guests: {room.maxGuests}</p>
-              <p>Bed: {room.bedType}</p>
+              <p>Guests: {room.features.maxGuests}</p>
+              <p>Bed: {room.features.bedType}</p>
               <p className="mt-2 mb-4 flex-grow">{room.description}</p>
               <button className="btn btn-p w-full mt-auto">Details</button>
             </div>
