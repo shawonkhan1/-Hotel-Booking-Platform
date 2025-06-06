@@ -6,6 +6,7 @@ import Faq from '../Page/Faq';
 import Services from '../Page/Services';
 import SpecialOffer from '../Page/SpecialOffer';
 import { Helmet } from 'react-helmet';
+import Maps from '../Page/Maps';
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
             <div className='mt-5'>
                 <FeaturedRoom />
             </div>
+          
 
             <div className='mt-10'>
                 <Services />
@@ -32,6 +34,10 @@ const Home = () => {
 
             <div>
                 <AllReview />
+            </div>
+
+                <div className='mt-10' style={{ height: '400px', width: '100%' }}>
+                <Maps />
             </div>
         </div>
        </>
