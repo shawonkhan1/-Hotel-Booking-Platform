@@ -1,0 +1,26 @@
+[
+  {
+    "question": "How can I book a room?",
+    "answer": "You can book a room by selecting your desired room, then filling in the booking form with your information. Once confirmed, you'll get a confirmation message."
+  },
+  {
+    "question": "Can I cancel my booking?",
+    "answer": "Yes! You can cancel your booking up to 1 day before your scheduled check-in time without any charge."
+  },
+  {
+    "question": "Are discounts available?",
+    "answer": "Yes, we provide seasonal offers and promo codes. Check the 'Offers' section on the homepage for the latest deals."
+  },
+  {
+    "question": "Is it secure to make payments online?",
+    "answer": "Absolutely. We use industry-standard encryption to protect your payment and personal information."
+  },
+  {
+    "question": "Do I need to create an account to book?",
+    "answer": "Yes, you must log in or register to complete a booking. This helps us manage your bookings and provide better service."
+  },
+  {
+    "question": "How do I change my profile information?",
+    "answer": "Go to your Profile page and click the 'Update Profile' button. You can change your name, photo, and other details there."
+  }
+]

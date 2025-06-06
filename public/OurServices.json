@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "icon": "FaBolt",
+    "title": "Fast Booking",
+    "description": "Quick and hassle-free room booking."
+  },
+  {
+    "id": 2,
+    "icon": "FaCheckCircle",
+    "title": "Trusted Hotels",
+    "description": "Verified and secure hotel listings."
+  },
+  {
+    "id": 3,
+    "icon": "FaHeadset",
+    "title": "24/7 Support",
+    "description": "Round-the-clock customer support."
+  },
+  {
+    "id": 4,
+    "icon": "FaTimesCircle",
+    "title": "Easy Cancellation",
+    "description": "Simple cancellation policy."
+  },
+  {
+    "id": 5,
+    "icon": "FaLock",
+    "title": "Secure Payment",
+    "description": "Safe and seamless payment process."
+  },
+  {
+    "id": 6,
+    "icon": "FaStar",
+    "title": "Real Reviews",
+    "description": "User ratings and genuine reviews."
+  },
+  {
+    "id": 7,
+    "icon": "FaTags",
+    "title": "Special Offers",
+    "description": "Discounts and exclusive deals."
+  },
+  {
+    "id": 8,
+    "icon": "FaMapMarkerAlt",
+    "title": "Location Filter",
+    "description": "Find hotels based on location."
+  },
+  {
+    "id": 9,
+    "icon": "FaUsers",
+    "title": "Family Friendly",
+    "description": "Rooms suitable for families."
+  },
+  {
+    "id": 10,
+    "icon": "FaMobileAlt",
+    "title": "Mobile Friendly",
+    "description": "Smooth experience on mobile and desktop."
+  }
+]
