@@ -19,22 +19,24 @@ const RoomDetails = () => {
   useEffect(() => {
     setLoading(true);
 
-    // Fetch room details
+    // room detials load
     axios
       .get(`http://localhost:3000/rooms/${id}`)
       .then((res) => {
         setRoom(res.data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.error("Error fetching room:", err);
+      .catch((error) => {
+        console.error("Error fetching room:", error);
         setLoading(false);
       });
 
-    // Fetch reviews for the room
+    // room revew load
     axios
       .get(`http://localhost:3000/reviews/${id}`)
-      .then((res) => setReviews(res.data))
+      .then((res) => {
+        setReviews(res.data);
+      })
       .catch(() => setReviews([]));
   }, [id]);
 
@@ -65,16 +67,16 @@ const RoomDetails = () => {
       .post("http://localhost:3000/bookings", {
         roomId: room._id,
         email: user.email,
-        date: bookingDate,
+        date: bookingDate.toISOString(),
         image: room.cover,
       })
       .then(() => {
         alert(
-          `✅ Your booking for "${
-            room.title
-          }" on ${bookingDate.toLocaleDateString()} is confirmed.`
+          `✅ Your booking for "${room.title}" on ${bookingDate.toLocaleDateString()} is confirmed.`
         );
-        setRoom({ ...room, availability: false });
+        // room book then able false
+        setRoom({ ...room, features: { ...room.features, availability: false } });
+
         setModalOpen(false);
         navigate("/myBooking");
       })
@@ -84,14 +86,12 @@ const RoomDetails = () => {
   };
 
   return (
-    <section className="max-w-5xl  mx-auto bg-white p-8 rounded-3xl shadow-md my-16 font-poppins">
+    <section className="max-w-5xl mx-auto bg-white p-8 rounded-3xl shadow-md my-16 font-poppins">
       {/* Room Main Section */}
       <div className="flex flex-col md:flex-row gap-8 items-start">
         <div className="w-full md:w-1/2 rounded-xl overflow-hidden border-2 border-[#1E3A8A] shadow-md">
           <img
-            src={
-              room.cover || "https://via.placeholder.com/600x400?text=No+Image"
-            }
+            src={room.cover || "https://via.placeholder.com/600x400?text=No+Image"}
             alt={room.title}
             className="w-full h-64 object-cover hover:scale-105 transition-transform"
           />
@@ -104,53 +104,50 @@ const RoomDetails = () => {
           </p>
           <p className="text-lg text-black font-semibold">৳{room.price} / night</p>
           <p className="text-black ">
-            <strong>Guests:</strong> {room.maxGuests}
+            <strong>Guests:</strong> {room.features.maxGuests}
           </p>
           {room.size && (
-            <p  className="text-black ">
+            <p className="text-black ">
               <strong>Room Size:</strong> {room.size}
             </p>
           )}
           {room.bedType && (
-            <p  className="text-black ">
+            <p className="text-black ">
               <strong>Bed Type:</strong> {room.bedType}
             </p>
           )}
           {room.category && (
-            <p  className="text-black ">
+            <p className="text-black ">
               <strong>Category:</strong> {room.category}
             </p>
           )}
-          <p  className="text-black ">
+          <p className="text-black ">
             <strong>Status:</strong>{" "}
-            <span
-              className={room.availability ? "text-green-600" : "text-red-500"}
-            >
-              {room.availability ? "Available" : "Booked"}
+            <span className={room.features.availability ? "text-green-600" : "text-red-500"}>
+              {room.features.availability ? "Available" : "Booked"}
             </span>
           </p>
 
           {room.cancellationPolicy && (
-            <p className="text-sm italic text-gray-500">
-              {room.cancellationPolicy}
-            </p>
+            <p className="text-sm italic text-gray-500">{room.cancellationPolicy}</p>
           )}
 
+          {/* book btn */}
           <button
             onClick={openModal}
-            disabled={!room.availability}
+            disabled={!room.features.availability}
             className={`w-full py-3 mt-4 rounded-xl font-semibold transition duration-300 ${
-              room.availability
+              room.features.availability
                 ? "bg-[#1E3A8A] hover:bg-[#163570] text-white"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
-            {room.availability ? "Book This Room" : "Not Available"}
+            {room.features.availability ? "Book This Room" : "Not Available"}
           </button>
         </div>
       </div>
 
-      {/* Reviews */}
+      {/* revew section */}
       <div className="mt-12">
         <h3 className="text-3xl font-bold mb-4 text-[#1E3A8A]">
           Guest Reviews ({reviews.length})
@@ -165,9 +162,7 @@ const RoomDetails = () => {
                 key={review._id}
                 className="p-4 border border-[#1E3A8A] rounded-xl shadow-sm bg-blue-50"
               >
-                <p className="font-semibold text-[#1E3A8A]">
-                  {review.username}
-                </p>
+                <p className="font-semibold text-[#1E3A8A]">{review.username}</p>
                 <p>
                   Rating:{" "}
                   <span className="font-bold text-yellow-500">
@@ -185,11 +180,11 @@ const RoomDetails = () => {
         )}
       </div>
 
-      {/* Booking Modal */}
+      {/* booking modal */}
       {modalOpen && (
         <>
           <div
-            className="fixed  inset-0  bg-opacity-40 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-opacity-40 backdrop-blur-sm z-40"
             onClick={closeModal}
             aria-hidden="true"
           ></div>
@@ -215,7 +210,7 @@ const RoomDetails = () => {
                 <strong>Price per night:</strong> ৳{room.price}
               </p>
               <p className="mb-2 text-[#1E3A8A]">
-                <strong>Max Guests:</strong> {room.maxGuests}
+                <strong>Max Guests:</strong> {room.features.maxGuests}
               </p>
 
               <p className="mb-2 text-[#1E3A8A]">
