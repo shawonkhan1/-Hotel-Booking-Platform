@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 .active {
-   color: #2563EB; /* Tailwind এর blue-600, সুন্দর মৃদু নীল */
+   color: #2563EB; 
   font-weight: 600;
 }
 

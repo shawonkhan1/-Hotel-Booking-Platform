@@ -55,11 +55,13 @@ const Login = () => {
         <title>Login</title>
       </Helmet>
 
-      <div className=" flex items-center justify-center bg-gradient-to-br px-4">
-        <div className="bg-white rounded-2xl  w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
-          
+      <div className="pt-20">
+        <div className=" flex items-center justify-center  bg-gradient-to-br px-4">
+        <div className=" rounded-2xl  w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+          {/*card color - bg-indigo-100 */}
           {/* Animation */}
-          <div className="hidden md:flex rounded-2xl mr-2 items-center justify-center bg-indigo-100 p-10">
+          <div className="hidden md:flex rounded-2xl mr-2 items-center justify-center  p-10">
             <Lottie animationData={logins} className="w-full max-w-md" loop={true} />
           </div>
 
@@ -81,7 +83,7 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 text-black"
                   />
                 </div>
 
@@ -93,7 +95,7 @@ const Login = () => {
                     name="password"
                     type="password"
                     placeholder="Enter your password"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 text-black"
                   />
                 </div>
 
@@ -106,7 +108,7 @@ const Login = () => {
                 </button>
 
                 {/* OR */}
-                <div className="text-center text-gray-400">OR</div>
+                <div className="text-center text-blue-600">OR</div>
 
                 {/* Google Login */}
                 <button
@@ -131,6 +133,7 @@ const Login = () => {
         </div>
 
         <ToastContainer />
+      </div>
       </div>
     </>
   );

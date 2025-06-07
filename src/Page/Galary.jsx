@@ -35,7 +35,7 @@ const Galary = () => {
             onClick={() => setCategory(cat)}
             className={`px-4 py-2 rounded-md font-semibold ${
               category === cat
-                ? "bg-[#1E3A8A] text-white"
+                ? "bg-blue-600 text-white"
                 : "bg-gray-300 hover:bg-gray-400"
             }`}
           >

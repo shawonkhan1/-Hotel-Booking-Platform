@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../Components/Loading";
 import { Helmet } from "react-helmet";
-import register from '../assets/Lottie/Register.json'
+import register from "../assets/Lottie/Register.json";
 
 const Register = () => {
   const { createUser, setUser, updateuser, googleLogin } =
@@ -15,7 +15,7 @@ const Register = () => {
   const location = useLocation();
 
   const [loading, setLoading] = useState(false);
-  // Register function
+
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -23,13 +23,12 @@ const Register = () => {
     const image = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    //  password length cheak
+
     if (password.length < 6) {
       toast.error("Password must be at least 6 characters.");
       return;
     }
 
-    // password validation cheak
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!passwordRegex.test(password)) {
       toast.error(
@@ -38,20 +37,18 @@ const Register = () => {
       return;
     }
 
-    // create user
+    setLoading(true);
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
 
-        // user email and pass +  name and pic (...user,{})
-        // if user name and pic then set his data in setUser //
         updateuser({ displayName: name, photoURL: image })
           .then(() => {
-            // setUser(result.user)
             setUser({ ...user, displayName: name, photoURL: image });
             e.target.reset();
             toast.success("Registration Successful!");
-            navigate("/");
+            navigate(`${location.state ? location.state : "/"}`);
           })
           .catch((error) => {
             console.log(error);
@@ -59,143 +56,138 @@ const Register = () => {
           });
       })
       .catch((error) => {
-        // alert(error.message);
         toast.error(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    // end register
-
-    // strt password length cheak
-
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 100);
-    //  end password length cheak
   };
 
-  // google login
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
-        console.log("Login Success", result.user);
-        toast.success(" Login Successfully ");
+        console.log(result);
+        toast.success("Login Successfully");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        console.error("Login Failed", error);
+        toast.error(error.message);
       });
   };
 
   return (
     <>
-    <Helmet>
-      <title>Register</title>
-    </Helmet>
-    <div className="md:flex gap-20 text-base-content  mt-[100px] lg:mt-[200px] md:mt-[150px] justify-center items-center">
-    
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <div className="card-body shadow-[0px_0px_8px_2px_#2a30b1,0px_4px_6px_-1px_rgba(0,0,0,0.1)] rounded-2xl">
-          <h1 className="text-3xl text-center font-bold">
-            Register now!
-          </h1>
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
 
-          {loading ? (
-            <Loading></Loading>
-          ) : (
-            <form onSubmit={handleRegister} className="fieldset">
-              {/* name */}
-              <label className="label">Name</label>
-              <input
-                required
-                name="name"
-                type="text"
-                className="input "
-                placeholder="Your Name"
-              />
-              {/* photo */}
-              <label className="label">Photo URL</label>
-              <input
-               
-                name="photo"
-                type="text"
-                className="input "
-                placeholder="Photo URL"
-              />
-              {/* email */}
-              <label className="label">Email</label>
-              <input
-                required
-                name="email"
-                type="email"
-                className="input "
-                placeholder="Your Email"
-              />
-              {/* password */}
-              <label className="label">Password</label>
-              <input
-                required
-                name="password"
-                type="password"
-                className="input"
-                placeholder="Password"
-              />
-              {/* register btn */}
-              <button type="submit" className="btn btn-p mt-4 ">
-                Register
-              </button>
-              {/* google login btn */}
-              <button
-                onClick={handleGoogleLogin}
-                type="button"
-                className="btn bg-white text-black border-[#e5e5e5]"
-              >
-                <svg
-                  aria-label="Google logo"
-                  width="16"
-                  height="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
+      <div className="flex items-center justify-center mt-20  px-4">
+        <div className=" rounded-3xl max-w-5xl w-full grid md:grid-cols-2 overflow-hidden">
+          {/* Left Side - Animation */}
+          <div className="hidden md:flex items-center justify-center  mr-4  p-10 rounded-2xl">
+            <Lottie animationData={register} loop={true} className="w-full max-w-md" />
+          </div>
+
+          {/* Right Side - Register Form */}
+          <div className="p-10 bg-indigo-100 rounded-2xl">
+            <h2 className="text-4xl font-extrabold text-indigo-700 text-center mb-6">
+              Create Account
+            </h2>
+
+            {loading ? (
+              <Loading />
+            ) : (
+              <form onSubmit={handleRegister} className="space-y-5">
+                <div>
+                  <label htmlFor="name" className="block text-indigo-700 font-semibold mb-1">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your Name"
+                    className="w-full px-4 py-3 rounded-lg border border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-black"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="photo" className="block text-indigo-700 font-semibold mb-1">
+                    Photo URL
+                  </label>
+                  <input
+                    id="photo"
+                    name="photo"
+                    type="text"
+                    placeholder="Photo URL (optional)"
+                    className="w-full px-4 py-3 rounded-lg border border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-black"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-indigo-700 font-semibold mb-1">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="Your Email"
+                    className="w-full px-4 py-3 rounded-lg border border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-black"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="password" className="block text-indigo-700 font-semibold mb-1">
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    placeholder="Password"
+                    className="w-full px-4 py-3 rounded-lg border border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-black"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
                 >
-                  <g>
-                    <path d="m0 0H512V512H0" fill="#fff"></path>
-                    <path
-                      fill="#34a853"
-                      d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                    ></path>
-                    <path
-                      fill="#4285f4"
-                      d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                    ></path>
-                    <path
-                      fill="#fbbc02"
-                      d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                    ></path>
-                    <path
-                      fill="#ea4335"
-                      d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                    ></path>
-                  </g>
-                </svg>
-                Login with Google
-              </button>
+                  Register
+                </button>
 
-              <p>
-                You Already Have An Account?{" "}
-                <Link to="/login" className="font-bold text-blue-500">
-                  Login
-                </Link>
-              </p>
-            </form>
-          )}
+                <div className="text-center text-blue-600 font-semibold">OR</div>
+
+                <button
+                  onClick={handleGoogleLogin}
+                  type="button"
+                  className="w-full flex items-center justify-center gap-3 border border-gray-300 bg-white text-gray-800 py-3 rounded-lg hover:bg-gray-50 transition"
+                >
+                  <img
+                    src="https://img.icons8.com/color/24/000000/google-logo.png"
+                    alt="Google Logo"
+                    className="w-6 h-6"
+                  />
+                  Register with Google
+                </button>
+
+                <p className="text-center text-gray-600 mt-4">
+                  Already have an account?{" "}
+                  <Link to="/login" className="text-indigo-600 font-semibold hover:underline">
+                    Login
+                  </Link>
+                </p>
+              </form>
+            )}
+          </div>
         </div>
       </div>
-          {/* animiton add */}
-          <div className="lg:w-[500px]">
-              <Lottie animationData={register} loop={true} />
-          </div>
-          {/* animiton add */}
-    </div>
+
+      <ToastContainer />
     </>
   );
 };

@@ -106,13 +106,15 @@ const Navbar = () => {
        
         {/* logo */}
       
-      <Link
+  <Link
   to="/"
-  className={`font-extrabold text-2xl select-none ml-2 transition-colors duration-300 ${
-    theme === "synthwave" ? "" : "text-primary"
+  className={`text-3xl font-extrabold select-none ml-2 transition-all duration-300 ${
+    theme === "synthwave"
+      ? "text-white"
+      : "bg-gradient-to-r from-blue-600 to-cyan-500 text-transparent bg-clip-text"
   } hidden md:flex`}
 >
-  EasyStay
+  EasyStay<span className={`${theme === "synthwave" ? "text-pink-500" : "text-blue-600"}`}></span>
 </Link>
       </div>
 
