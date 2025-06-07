@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
+import Loading from "../Components/Loading";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -19,7 +20,7 @@ const Reviews = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading reviews...</div>;
+    <Loading></Loading>
   }
 
   return (

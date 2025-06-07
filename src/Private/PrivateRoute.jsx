@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Navigate, useLocation } from "react-router";
+import Loading from "../Components/Loading";
 
 //this route goes to main.jsx and cover company details
 
@@ -15,7 +16,7 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <span className="loading mt-[100px] loading-spinner loading-xl"></span>
+      <Loading></Loading>
     );
   }
 

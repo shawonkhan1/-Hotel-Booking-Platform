@@ -4,6 +4,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../Provider/AuthProvider";
+import Loading from "../Components/Loading";
 
 const RoomDetails = () => {
   const navigate = useNavigate();
@@ -42,9 +43,7 @@ const RoomDetails = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-[300px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-[#1E3A8A]"></div>
-      </div>
+   <Loading></Loading>
     );
 
   if (!room)
