@@ -17,6 +17,9 @@ export const Links = (
     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/myBooking">
       My Bookings
     </NavLink>
+    <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/galary">
+      Galary
+    </NavLink>
 
     
   

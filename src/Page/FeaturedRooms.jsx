@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router"; // ✅ ঠিক ইমপোর্ট
+import { Link } from "react-router"; 
 import Loading from "../Components/Loading";
 
 const FeaturedRoom = () => {
@@ -52,7 +52,7 @@ const FeaturedRoom = () => {
   return (
     <div className="p-4">
       <h1 className="text-center font-bold text-4xl mb-8">
-        Top Rated Rooms by Review
+        Featured Room
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

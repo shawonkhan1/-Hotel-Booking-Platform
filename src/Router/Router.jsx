@@ -12,6 +12,7 @@ import RoomDetails from "../Page/RoomDetails";
 import Home from "../Layout/Home";
 import ForgetPass from "../Authentication/ForgetPass";
 import ErrorPage from "../Layout/ErrorPage";
+import Galary from "../Page/Galary";
 
 
 export const router = createBrowserRouter([
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "/allRoom",
         Component: Rooms,
+      },
+      {
+        path:'/galary',
+        Component: Galary
       },
       {
         path: "/myBooking",

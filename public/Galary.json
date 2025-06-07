@@ -1,0 +1,22 @@
+{
+  "hotel": [
+    "https://i.ibb.co/tpjFHnfn/hotel3.webp",
+    "https://i.ibb.co/BVj5NZzf/hotel2.jpg",
+    "https://i.ibb.co/M5Bkk85Z/hotel1.jpg"
+  ],
+  "rooms": [
+    "https://i.ibb.co/0Vs6HGwg/rooms1.png",
+    "https://i.ibb.co/QGz6MvL/rooms2.jpg",
+    "https://i.ibb.co/ym2TcJHR/rooms3.jpg"
+  ],
+  "amenities": [
+    "https://i.ibb.co/Jj1V3VzJ/aminites.webp",
+    "https://i.ibb.co/BV3s7KZm/aminites2.webp",
+    "https://i.ibb.co/7J9dBchG/aminitis1.png"
+  ],
+  "events": [
+    "https://i.ibb.co/wNsRHnht/event1.jpg",
+    "https://i.ibb.co/mCnRtbnW/event2.jpg",
+    "https://i.ibb.co/Ps1mwzYV/event-3.jpg"
+  ]
+}
