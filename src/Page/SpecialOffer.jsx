@@ -5,7 +5,7 @@ const SpecialOffer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsOpen(true), 2000); 
+    const timer = setTimeout(() => setIsOpen(true), 3000); 
     return () => clearTimeout(timer);
   }, []);
 

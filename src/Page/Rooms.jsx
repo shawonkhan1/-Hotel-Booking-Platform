@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router"; 
+import { Link } from "react-router";
 import Loading from "../Components/Loading";
+import { motion } from "framer-motion";
 
 const priceRanges = [
   { label: "All", min: "", max: "" },
@@ -48,39 +49,47 @@ const Rooms = () => {
   };
 
   if (loading) {
-    return (
-     <Loading></Loading>
-    );
+    return <Loading></Loading>;
   }
 
   return (
     <div className="p-4">
-      <h1 className="text-center font-bold text-blue-600 text-4xl mb-6">Find the Right Room for You</h1>
+      <motion.h1
+        animate={{
+          color: ["#124ce5", "#5fe512", "#12e5ae "],
+          transition: { duration: 5, repeat: Infinity },
+        }}
+        className="text-center font-bold text-blue-600 text-4xl mb-6"
+      >
+        Find the Right Room for You
+      </motion.h1>
 
       {/* Filter Dropdown */}
-     <h1 className="flex justify-end text-2xl  mb-3 ">Price Range</h1>
+      <h1 className="flex justify-end text-2xl  mb-3 ">Price Range</h1>
       <div className="flex justify-end">
-       
- <div className="mb-8 flex justify-center">
-        <select
-          className="select select-bordered w-48"
-          onChange={handleFilterChange}
-          value={selectedRange.label}
-        >
-          {priceRanges.map((range) => (
-            <option key={range.label} value={range.label}>
-              {range.label}
-            </option>
-          ))}
-        </select>
+        <div className="mb-8 flex justify-center">
+          <select
+            className="select select-bordered w-48"
+            onChange={handleFilterChange}
+            value={selectedRange.label}
+          >
+            {priceRanges.map((range) => (
+              <option key={range.label} value={range.label}>
+                {range.label}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-      </div>
-     
 
       {/* Rooms Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {rooms.map((room) => (
-          <Link key={room._id} to={`/details/${room._id}`} className="block h-full">
+          <Link
+            key={room._id}
+            to={`/details/${room._id}`}
+            className="block h-full"
+          >
             <div className="border rounded-lg shadow-md p-4 flex flex-col hover:shadow-lg transition cursor-pointer h-full">
               <img
                 src={room.cover}

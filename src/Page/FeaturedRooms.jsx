@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router"; 
 import Loading from "../Components/Loading";
+import { motion } from "framer-motion";
+
 
 const FeaturedRoom = () => {
   const [rooms, setRooms] = useState([]);
@@ -51,9 +53,21 @@ const FeaturedRoom = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-center font-bold text-4xl mb-8">
-        Featured Room
-      </h1>
+      <motion.h1 
+        
+         initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+         transition={{ duration: 2, ease: "easeOut" }}
+      className="text-center font-bold text-4xl mb-8">
+       Our <motion.span
+        animate={{color:["#124ce5","#12d5e5 ","#7de512 ","#5b12e5"],
+          transition: {duration:5, repeat:Infinity}
+        }}
+      
+       >
+           Featured </motion.span>
+         Room
+      </motion.h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {rooms.map((room) => (
