@@ -5,6 +5,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../Provider/AuthProvider";
 import Loading from "../Components/Loading";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const RoomDetails = () => {
   const navigate = useNavigate();
@@ -20,32 +22,21 @@ const RoomDetails = () => {
   useEffect(() => {
     setLoading(true);
 
-    // room detials load
     axios
       .get(`http://localhost:3000/rooms/${id}`)
       .then((res) => {
         setRoom(res.data);
         setLoading(false);
       })
-      .catch((error) => {
-        console.error("Error fetching room:", error);
-        setLoading(false);
-      });
+      .catch(() => setLoading(false));
 
-    // room revew load
     axios
       .get(`http://localhost:3000/reviews/${id}`)
-      .then((res) => {
-        setReviews(res.data);
-      })
+      .then((res) => setReviews(res.data))
       .catch(() => setReviews([]));
   }, [id]);
 
-  if (loading)
-    return (
-   <Loading></Loading>
-    );
-
+  if (loading) return <Loading />;
   if (!room)
     return (
       <div className="text-center text-red-600 text-xl mt-20">
@@ -56,9 +47,19 @@ const RoomDetails = () => {
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
+  const averageRating =
+    reviews.length > 0
+      ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+      : null;
+
   const confirmBooking = () => {
     if (!bookingDate) {
-      alert("Please select a booking date.");
+      Swal.fire({
+        icon: "warning",
+        title: "Oops!",
+        text: "Please select a booking date.",
+        confirmButtonColor: "#1E3A8A",
+      });
       return;
     }
 
@@ -70,23 +71,25 @@ const RoomDetails = () => {
         image: room.cover,
       })
       .then(() => {
-        alert(
-          `✅ Your booking for "${room.title}" on ${bookingDate.toLocaleDateString()} is confirmed.`
-        );
-        // room book then able false
+        Swal.fire({
+          title: "Booking Confirmed!",
+          html: ` Your booking for <strong>${room.title}</strong> on <strong>${bookingDate.toLocaleDateString()}</strong> is confirmed.`,
+          icon: "success",
+          confirmButtonColor: "#1E3A8A",
+        });
         setRoom({ ...room, features: { ...room.features, availability: false } });
-
         setModalOpen(false);
         navigate("/myBooking");
       })
       .catch((err) => {
-        alert(err.response?.data?.error || "❌ Booking failed. Try again.");
+        toast.error(err.response?.data?.error || " Booking failed. Try again.");
+       
       });
   };
 
   return (
-    <section className="max-w-5xl mx-auto bg-white p-8 rounded-3xl shadow-md my-16 font-poppins">
-      {/* Room Main Section */}
+    <section className="max-w-6xl mx-auto bg-white p-8 rounded-3xl shadow-md my-16 font-poppins">
+      {/* Room Main */}
       <div className="flex flex-col md:flex-row gap-8 items-start">
         <div className="w-full md:w-1/2 rounded-xl overflow-hidden border-2 border-[#1E3A8A] shadow-md">
           <img
@@ -97,47 +100,47 @@ const RoomDetails = () => {
         </div>
 
         <div className="w-full md:w-1/2 space-y-4">
-          <h2 className="text-4xl font-bold text-[#1E3A8A]">{room.title}</h2>
-          <p className="text-lg text-gray-700">
-            {room.description || "No description available."}
-          </p>
-          <p className="text-lg text-black font-semibold">৳{room.price} / night</p>
-          <p className="text-black ">
-            <strong>Guests:</strong> {room.features.maxGuests}
-          </p>
-          {room.size && (
-            <p className="text-black ">
-              <strong>Room Size:</strong> {room.size}
-            </p>
-          )}
-          {room.bedType && (
-            <p className="text-black ">
-              <strong>Bed Type:</strong> {room.bedType}
-            </p>
-          )}
-          {room.category && (
-            <p className="text-black ">
-              <strong>Category:</strong> {room.category}
-            </p>
-          )}
-          <p className="text-black ">
-            <strong>Status:</strong>{" "}
-            <span className={room.features.availability ? "text-green-600" : "text-red-500"}>
-              {room.features.availability ? "Available" : "Booked"}
-            </span>
-          </p>
+          <h2 className="text-4xl font-bold text-blue-600">{room.title}</h2>
+          <span className="bg-blue-100 text-[#1E3A8A] px-3 py-1 rounded-full text-sm font-medium">
+            🏷️ {room.category || "Standard"}
+          </span>
 
-          {room.cancellationPolicy && (
-            <p className="text-sm italic text-gray-500">{room.cancellationPolicy}</p>
+          <p className="text-lg text-gray-700">{room.description || "No description available."}</p>
+          <p className="text-xl text-black font-semibold">৳{room.price} / night</p>
+
+          <div className="space-y-1 text-black">
+            <p><strong>Guests:</strong> {room.features.maxGuests}</p>
+            <p><strong>Room Size:</strong> {room.features.size || "N/A"}</p>
+            <p><strong>Bed Type:</strong> {room.features.bedType || "N/A"}</p>
+            <p>
+              <strong>Status:</strong>{" "}
+              <span className={room.features.availability ? "text-green-600" : "text-red-500"}>
+                {room.features.availability ? "Available" : "Booked"}
+              </span>
+            </p>
+            {room.cancellationPolicy && (
+              <p className="text-sm italic text-gray-500">{room.cancellationPolicy}</p>
+            )}
+          </div>
+
+          {/* Amenities */}
+          {room.amenities && room.amenities.length > 0 && (
+            <div className="mt-2">
+              <h4 className="font-bold text-[#1E3A8A]">✅ Amenities:</h4>
+              <ul className="list-disc list-inside text-gray-700">
+                {room.amenities.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
           )}
 
-          {/* book btn */}
           <button
             onClick={openModal}
             disabled={!room.features.availability}
             className={`w-full py-3 mt-4 rounded-xl font-semibold transition duration-300 ${
               room.features.availability
-                ? "bg-[#1E3A8A] hover:bg-[#163570] text-white"
+                ? "bg-blue-600  hover:bg-[#163570] text-white"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
@@ -146,11 +149,19 @@ const RoomDetails = () => {
         </div>
       </div>
 
-      {/* revew section */}
-      <div className="mt-12">
-        <h3 className="text-3xl font-bold mb-4 text-[#1E3A8A]">
+      {/* Divider */}
+      <hr className="my-12 border-t-2 border-gray-200" />
+
+      {/* Reviews */}
+      <div>
+        <h3 className="text-3xl font-bold mb-2 text-[#1E3A8A]">
           Guest Reviews ({reviews.length})
         </h3>
+        {averageRating && (
+          <p className="text-lg font-semibold text-yellow-500 mb-4">
+            ⭐ Average Rating: {averageRating}/5
+          </p>
+        )}
 
         {reviews.length === 0 ? (
           <p className="text-gray-500 italic">No reviews for this room yet.</p>
@@ -179,7 +190,7 @@ const RoomDetails = () => {
         )}
       </div>
 
-      {/* booking modal */}
+      {/* Booking Modal */}
       {modalOpen && (
         <>
           <div
@@ -202,19 +213,9 @@ const RoomDetails = () => {
                 Confirm Booking
               </h2>
 
-              <p className="mb-2 text-[#1E3A8A]">
-                <strong>Room:</strong> {room.title}
-              </p>
-              <p className="mb-2 text-[#1E3A8A]">
-                <strong>Price per night:</strong> ৳{room.price}
-              </p>
-              <p className="mb-2 text-[#1E3A8A]">
-                <strong>Max Guests:</strong> {room.features.maxGuests}
-              </p>
-
-              <p className="mb-2 text-[#1E3A8A]">
-                <strong>Your Email:</strong> {user.email}
-              </p>
+              <p className="mb-2 text-[#1E3A8A]"><strong>Room:</strong> {room.title}</p>
+              <p className="mb-2 text-[#1E3A8A]"><strong>Price per night:</strong> ৳{room.price}</p>
+              <p className="mb-2 text-[#1E3A8A]"><strong>Your Email:</strong> {user.email}</p>
 
               <div className="mb-6">
                 <label
@@ -242,7 +243,7 @@ const RoomDetails = () => {
                 </button>
                 <button
                   onClick={confirmBooking}
-                  className="px-6 py-3 bg-[#1E3A8A] rounded-xl text-white font-bold hover:bg-[#163570] transition"
+                  className="px-6 py-3 bg-blue-600  rounded-xl text-white font-bold hover:bg-[#163570] transition"
                 >
                   Confirm
                 </button>

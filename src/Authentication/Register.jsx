@@ -95,7 +95,7 @@ const Register = () => {
     <div className="md:flex gap-20 text-base-content  mt-[100px] lg:mt-[200px] md:mt-[150px] justify-center items-center">
     
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <div className="card-body shadow-[0px_0px_8px_2px_#2ee235,0px_4px_6px_-1px_rgba(0,0,0,0.1)] rounded-2xl">
+        <div className="card-body shadow-[0px_0px_8px_2px_#2a30b1,0px_4px_6px_-1px_rgba(0,0,0,0.1)] rounded-2xl">
           <h1 className="text-3xl text-center font-bold">
             Register now!
           </h1>
@@ -116,7 +116,7 @@ const Register = () => {
               {/* photo */}
               <label className="label">Photo URL</label>
               <input
-                required
+               
                 name="photo"
                 type="text"
                 className="input "

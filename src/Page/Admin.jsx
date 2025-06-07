@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import NoDataFound from "./NoDataFound";
 import Loadings from "../Components/Loading";
+
 const Admin = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [deletingId, setDeletingId] = useState(null); 
+  const [deletingId, setDeletingId] = useState(null);
 
   useEffect(() => {
     fetchContacts();
@@ -13,7 +15,7 @@ const Admin = () => {
 
   const fetchContacts = () => {
     setLoading(true);
-    fetch("http://localhost:3000/contact")  
+    fetch("http://localhost:3000/contact")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch contacts");
         return res.json();
@@ -29,28 +31,47 @@ const Admin = () => {
   };
 
   const handleDelete = (id) => {
-    if (!window.confirm("Are you sure you want to delete this contact?")) return;
+    Swal.fire({
+      title: "Are you sure you want to delete this data?",
+  text: "This action cannot be undone!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setDeletingId(id);
+        fetch(`http://localhost:3000/contact/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed to delete contact");
 
-    setDeletingId(id);
-    fetch(`http://localhost:3000/contact/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to delete contact");
-        
-        fetchContacts();
-        setDeletingId(null);
-      })
-      .catch((err) => {
-        alert("Delete failed: " + err.message);
-        setDeletingId(null);
-      });
+            fetchContacts();
+            setDeletingId(null);
+
+            Swal.fire({
+              title: "Deleted!",
+              text: "Contact has been deleted.",
+              icon: "success",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+          })
+          .catch((err) => {
+            setDeletingId(null);
+            Swal.fire({
+              title: "Error!",
+              text: "Delete failed: " + err.message,
+              icon: "error",
+            });
+          });
+      }
+    });
   };
 
-  if (loading)
-    return (
-    <Loadings></Loadings>
-    );
+  if (loading) return <Loadings />;
 
   if (error)
     return (
@@ -60,14 +81,13 @@ const Admin = () => {
     );
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-7xl mx-auto p-6  rounded-lg ">
       <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
         Contact Messages
       </h1>
 
       {contacts.length === 0 ? (
-        // <p className="text-center text-gray-500 text-lg">No contacts found.</p>
-        <NoDataFound></NoDataFound>
+        <NoDataFound />
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300 rounded-lg">

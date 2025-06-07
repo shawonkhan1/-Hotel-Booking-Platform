@@ -55,10 +55,12 @@ const Rooms = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-center font-bold text-4xl mb-6">Rooms</h1>
+      <h1 className="text-center font-bold text-blue-600 text-4xl mb-6">Find the Right Room for You</h1>
 
       {/* Filter Dropdown */}
+     <h1 className="flex justify-end text-2xl  mb-3 ">Price Range</h1>
       <div className="flex justify-end">
+       
  <div className="mb-8 flex justify-center">
         <select
           className="select select-bordered w-48"

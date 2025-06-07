@@ -25,7 +25,7 @@ const UserProfile = () => {
           </h1>
 
           <img
-            src={user?.photoURL}
+            src={user?.photoURL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXJxYx_5I3nVr3oJdVp8jpvvELUKjK1PtL1G6hCRyNPK1QNptgSkIxpEeXmiCdQIY8yMI&usqp=CAU'}
             alt="User"
             className="w-24 h-24 mx-auto rounded-full border-4 border-blue-500"
           />

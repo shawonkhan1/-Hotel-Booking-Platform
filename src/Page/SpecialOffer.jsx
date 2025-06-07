@@ -29,7 +29,7 @@ const SpecialOffer = () => {
 
         <h2
           id="specialOfferTitle"
-          className="text-2xl font-extrabold text-center mb-4 text-indigo-700"
+          className="text-2xl font-extrabold text-center mb-4 text-blue-600"
         >
           🎉 Special Offers & Promotions 🎉
         </h2>
@@ -53,7 +53,7 @@ const SpecialOffer = () => {
             onClick={() => {
               setIsOpen(false);
             }}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-md font-semibold transition"
+            className="bg-blue-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-md font-semibold transition"
           >
             Book Now
           </button>
@@ -61,7 +61,7 @@ const SpecialOffer = () => {
 
           <button
             onClick={() => setIsOpen(false)}
-            className="border border-indigo-600 text-indigo-600 px-6 py-2 rounded-md font-semibold hover:bg-indigo-100 transition"
+            className="border border-blue-600 text-indigo-600 px-6 py-2 rounded-md font-semibold hover:bg-indigo-100 transition"
           >
             Close
           </button>

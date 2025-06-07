@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
-import users from "../assets/anime-girl-red-eyes-fantasy-4k-wallpaper-uhdpaper.com-716@2@b.jpg";
+// import users from "../assets/anime-girl-red-eyes-fantasy-4k-wallpaper-uhdpaper.com-716@2@b.jpg";
 
 
 import { toast } from "react-toastify";
@@ -14,12 +14,13 @@ export const Links = (
     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/allRoom">
      Rooms
     </NavLink>
+     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/galary">
+      Galary
+    </NavLink>
     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/myBooking">
       My Bookings
     </NavLink>
-    <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/galary">
-      Galary
-    </NavLink>
+   
     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/contact">
      ContactUs
     </NavLink>
@@ -191,10 +192,10 @@ const Navbar = () => {
           <div className="flex gap-3">
             {" "}
             <Link to="/login">
-              <button className="btn btn-success">Login</button>
+              <button className="btn btn-p">Login</button>
             </Link>
             <Link to="/register">
-              <button className="btn btn-success">Register</button>
+              <button className="btn btn-p">Register</button>
             </Link>
           </div>
         )}
@@ -207,7 +208,7 @@ const Navbar = () => {
             <Link to="/profile">
               <div className="avatar">
                 <div className="ring-primary  ring-offset-base-100 w-7 rounded-full ring-2 ring-offset-2">
-                  <img src={user?.photoURL || users} alt="User Avatar" />
+                  <img src={user?.photoURL || "https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"} alt="User Avatar" />
                 </div>
               </div>
             </Link>

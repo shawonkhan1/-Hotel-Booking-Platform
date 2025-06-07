@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../Components/Loading";
 import { Helmet } from "react-helmet";
-import logins from '../assets/Lottie/loginLottie.json'
+import logins from "../assets/Lottie/loginLottie.json";
 
 const Login = () => {
   const { Login, googleLogin } = useContext(AuthContext);
@@ -18,30 +18,30 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     setLoading(true);
+
     const email = e.target.email.value;
     const password = e.target.password.value;
 
     Login(email, password)
       .then((result) => {
         console.log(result);
+        toast.success("Login Successful");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         toast.error(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 100);
   };
 
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
         console.log(result);
-        toast.success("Login Successfully");
+        toast.success("Google Login Successful");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
@@ -54,82 +54,74 @@ const Login = () => {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      
-      <div className="md:flex gap-20 text-base-content mt-[100px] lg:mt-[200px] md:mt-[150px] justify-center items-center px-4">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <div className="card-body shadow-[0px_0px_8px_2px_#2ee235,0px_4px_6px_-1px_rgba(0,0,0,0.1)] rounded-2xl">
-            <h1 className="text-3xl text-center font-bold mb-4">Login now!</h1>
+
+      <div className=" flex items-center justify-center bg-gradient-to-br px-4">
+        <div className="bg-white rounded-2xl  w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+          
+          {/* Animation */}
+          <div className="hidden md:flex rounded-2xl mr-2 items-center justify-center bg-indigo-100 p-10">
+            <Lottie animationData={logins} className="w-full max-w-md" loop={true} />
+          </div>
+
+          {/* Login Form */}
+          <div className="p-8 md:p-10 bg-indigo-100  rounded-2xl">
+            <h2 className="text-3xl font-bold text-indigo-700 text-center mb-6">Login to Your Account</h2>
 
             {loading ? (
               <Loading />
             ) : (
-              <form onSubmit={handleLogin} className="fieldset">
-                {/* email */}
-                <label className="label">Email</label>
-                <input
-                  required
-                  name="email"
-                  type="email"
-                  className="input"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+              <form onSubmit={handleLogin} className="space-y-5">
+                {/* Email */}
+                <div>
+                  <label className="block text-gray-700 font-medium mb-1">Email</label>
+                  <input
+                    required
+                    name="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  />
+                </div>
 
-                {/* password */}
-                <label className="label mt-4">Password</label>
-                <input
-                  required
-                  name="password"
-                  type="password"
-                  className="input"
-                  placeholder="Password"
-                />
+                {/* Password */}
+                <div>
+                  <label className="block text-gray-700 font-medium mb-1">Password</label>
+                  <input
+                    required
+                    name="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  />
+                </div>
 
-                {/* login btn */}
-                <button type="submit" className="btn btn-p mt-4 w-full">
+                {/* Login Button */}
+                <button
+                  type="submit"
+                  className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-semibold "
+                >
                   Login
                 </button>
 
-                {/* google login btn */}
+                {/* OR */}
+                <div className="text-center text-gray-400">OR</div>
+
+                {/* Google Login */}
                 <button
                   onClick={handleGoogleLogin}
                   type="button"
-                  className="btn bg-white text-black border-[#e5e5e5] mt-3 w-full flex items-center justify-center gap-2"
+                  className="w-full border border-gray-300 bg-white text-gray-800 py-3 rounded-lg hover:bg-gray-50 transition flex items-center justify-center gap-2"
                 >
-                  <svg
-                    aria-label="Google logo"
-                    width="16"
-                    height="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                  >
-                    <g>
-                      <path d="m0 0H512V512H0" fill="#fff"></path>
-                      <path
-                        fill="#34a853"
-                        d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                      ></path>
-                      <path
-                        fill="#4285f4"
-                        d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                      ></path>
-                      <path
-                        fill="#fbbc02"
-                        d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                      ></path>
-                      <path
-                        fill="#ea4335"
-                        d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                      ></path>
-                    </g>
-                  </svg>
+                  <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google" />
                   Login with Google
                 </button>
 
-                <p className="mt-4 text-center">
-                  Don't Have An Account?{" "}
-                  <Link to="/register" className="font-bold text-blue-500">
+                {/* Link to Register */}
+                <p className="text-center text-sm text-gray-600 mt-4">
+                  Don't have an account?{" "}
+                  <Link to="/register" className="text-indigo-600 font-semibold hover:underline">
                     Register
                   </Link>
                 </p>
@@ -138,13 +130,8 @@ const Login = () => {
           </div>
         </div>
 
-        {/* animation */}
-        <div className="lg:w-[500px] w-full max-w-sm sm:max-w-md">
-          <Lottie animationData={logins} loop={true} />
-        </div>
+        <ToastContainer />
       </div>
-
-      <ToastContainer />
     </>
   );
 };
