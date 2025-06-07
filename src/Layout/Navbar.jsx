@@ -20,6 +20,10 @@ export const Links = (
     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/galary">
       Galary
     </NavLink>
+    <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/contact">
+     ContactUs
+    </NavLink>
+    
 
     
   
@@ -86,6 +90,16 @@ const Navbar = () => {
             className="menu menu-sm  dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             {Links}
+             {/*admin This site maker*/}
+    {user?.email === "shawon505214@gmail.com" && (
+      <NavLink
+        className="text-[20px] p-2 text-base-content hover:text-primary"
+        to="/admin"
+      >
+        Admin
+      </NavLink>
+    )}
+              {/*admin This site maker*/}
           </ul>
         </div>
        
@@ -101,7 +115,21 @@ const Navbar = () => {
 </Link>
       </div>
 
-      <div className="navbar-center  hidden lg:flex">{Links}</div>
+      <div className="navbar-center  hidden lg:flex">
+        {Links}
+
+          {/*admin This site maker*/}
+    {user?.email === "shawon505214@gmail.com" && (
+      <NavLink
+        className="text-[20px] p-2 text-base-content hover:text-primary"
+        to="/admin"
+      >
+        Admin
+      </NavLink>
+    )}
+       {/*admin This site maker*/}
+
+      </div>
 
       <div className="navbar-end   gap-4">
         {/* dark mode ar jnno */}

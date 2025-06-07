@@ -13,7 +13,8 @@ import Home from "../Layout/Home";
 import ForgetPass from "../Authentication/ForgetPass";
 import ErrorPage from "../Layout/ErrorPage";
 import Galary from "../Page/Galary";
-
+import Contact from "../Page/Contact";
+import Admin from "../Page/Admin";
 
 export const router = createBrowserRouter([
   {
@@ -38,8 +39,8 @@ export const router = createBrowserRouter([
         Component: UpdateProfile,
       },
       {
-        path:'/forgetpass',
-        Component: ForgetPass
+        path: "/forgetpass",
+        Component: ForgetPass,
       },
       {
         path: "/profile",
@@ -50,8 +51,8 @@ export const router = createBrowserRouter([
         Component: Rooms,
       },
       {
-        path:'/galary',
-        Component: Galary
+        path: "/galary",
+        Component: Galary,
       },
       {
         path: "/myBooking",
@@ -69,9 +70,22 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      
-
+      {
+        path: "/contact",
+        element: (
+          <PrivateRoute>
+            <Contact></Contact>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/admin",
+        element: (
+          <PrivateRoute>
+            <Admin></Admin>
+          </PrivateRoute>
+        ),
+      },
     ],
-    
   },
 ]);
