@@ -79,25 +79,35 @@ const FeaturedRoom = () => {
           <Link
             to={`/details/${room._id}`}
             key={room._id}
-            className="border rounded-lg shadow-md p-4 flex flex-col hover:shadow-lg transition cursor-pointer"
+            className="block"
           >
-            <img
-              src={room.cover}
-              alt={room.title}
-              className="w-full h-48 object-cover rounded-md mb-4"
-            />
-            <h2 className="text-xl font-semibold">{room.title}</h2>
-            <p>Price: ৳{room.price}</p>
-            <p>Category: {room.category}</p>
-            <p>Guests: {room.maxGuests}</p>
-            <p>Bed: {room.bedType}</p>
-            <p className="mt-2 mb-4 flex-grow">{room.description}</p>
+            <motion.div
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 15px 25px rgba(59, 130, 246, 0.4)",
+                transition: { duration: 0.3 },
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="border rounded-lg shadow-md p-4 flex flex-col bg-white h-full cursor-pointer"
+            >
+              <img
+                src={room.cover}
+                alt={room.title}
+                className="w-full h-48 object-cover rounded-md mb-4"
+              />
+              <h2 className="text-xl font-semibold">{room.title}</h2>
+              <p>Price: ৳{room.price}</p>
+              <p>Category: {room.category}</p>
+              <p>Guests: {room.maxGuests}</p>
+              <p>Bed: {room.bedType}</p>
+              <p className="mt-2 mb-4 flex-grow">{room.description}</p>
 
-            <p>
-              <strong>Reviews: </strong>
-              {reviewsCount[room._id] ?? 0}
-            </p>
-            <button className="btn-p btn my-5">Book Now</button>
+              <p>
+                <strong>Reviews: </strong>
+                {reviewsCount[room._id] ?? 0}
+              </p>
+              <button className="btn-p btn my-5">Book Now</button>
+            </motion.div>
           </Link>
         ))}
       </div>

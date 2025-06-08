@@ -49,11 +49,12 @@ const Rooms = () => {
   };
 
   if (loading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 md:p-8">
+      {/* Heading */}
       <motion.h1
         animate={{
           backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -69,25 +70,19 @@ const Rooms = () => {
       </motion.h1>
 
       {/* Filter Dropdown */}
-
-    <h1 className="flex justify-end text-2xl font-semibold mb-3 text-indigo-700 hover:text-indigo-900 transition-colors duration-300">
-  Price Range
-</h1>
-
-      <div className="flex justify-end">
-        <div className="mb-8 flex justify-center">
-          <select
-            className="select select-bordered w-48"
-            onChange={handleFilterChange}
-            value={selectedRange.label}
-          >
-            {priceRanges.map((range) => (
-              <option key={range.label} value={range.label}>
-                {range.label}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div className="flex justify-end items-center gap-2 mb-6">
+        <label className="text-indigo-700 font-medium text-lg">Price Range:</label>
+        <select
+          className="select select-bordered w-48"
+          onChange={handleFilterChange}
+          value={selectedRange.label}
+        >
+          {priceRanges.map((range) => (
+            <option key={range.label} value={range.label}>
+              {range.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Rooms Grid */}
@@ -96,21 +91,23 @@ const Rooms = () => {
           <Link
             key={room._id}
             to={`/details/${room._id}`}
-            className="block h-full"
+            className="group block h-full"
           >
-            <div className="border rounded-lg shadow-md p-4 flex flex-col hover:shadow-lg transition cursor-pointer h-full">
+            <div className="bg-white border rounded-xl p-4 shadow-md flex flex-col h-full transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.03] group-hover:-translate-y-2 group-hover:shadow-xl">
               <img
                 src={room.cover}
                 alt={room.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
+                className="w-full h-48 object-cover rounded-md mb-4 transition-all duration-500 ease-in-out group-hover:brightness-105 group-hover:contrast-110"
               />
-              <h2 className="text-xl font-semibold">{room.title}</h2>
-              <p>Price: ৳{room.price}</p>
-              <p>Category: {room.category}</p>
-              <p>Guests: {room.features.maxGuests}</p>
-              <p>Bed: {room.features.bedType}</p>
-              <p className="mt-2 mb-4 flex-grow">{room.description}</p>
-              <button className="btn btn-p w-full mt-auto">Details</button>
+              <h2 className="text-xl font-semibold text-[#1e293b]">{room.title}</h2>
+              <p className="text-[#475569]">Price: ৳{room.price}</p>
+              <p className="text-[#475569]">Category: {room.category}</p>
+              <p className="text-[#475569]">Guests: {room.features.maxGuests}</p>
+              <p className="text-[#475569]">Bed: {room.features.bedType}</p>
+              <p className="mt-2 mb-4 text-sm text-[#64748b] flex-grow">
+                {room.description}
+              </p>
+              <button className="btn btn-primary mt-4">Details</button>
             </div>
           </Link>
         ))}
