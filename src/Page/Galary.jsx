@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loading from "../Components/Loading";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import DancePage from "./DancePage";
 
 const Galary = () => {
   const [category, setCategory] = useState("hotel");
@@ -51,9 +52,10 @@ const Galary = () => {
           >
             {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </button>
+        
         ))}
       </div>
-
+       
       {/* images grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {galleryData[category].map((imgUrl, idx) => (
@@ -69,6 +71,13 @@ const Galary = () => {
           </div>
         ))}
       </div>
+
+        {/* extra colleciton */}
+      <div className="mt-10 flex justify-center">
+        <DancePage></DancePage>
+        
+      </div>
+
       <div className="flex justify-center mt-10">
         <Link to="/">
           <button className="btn btn-p">Back To Home</button>

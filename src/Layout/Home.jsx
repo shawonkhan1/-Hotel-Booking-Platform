@@ -8,6 +8,7 @@ import SpecialOffer from "../Page/SpecialOffer";
 import { Helmet } from "react-helmet";
 import Maps from "../Page/Maps";
 import { motion } from "framer-motion";
+import DancePage from "../Page/DancePage";
 
 const Home = () => {
   return (
@@ -30,6 +31,8 @@ const Home = () => {
         <div className="mt-10">
           <Faq />
         </div>
+
+        
 
         <div>
           <AllReview />
@@ -71,7 +74,7 @@ const Home = () => {
         </div>
 
 
-        
+
       </div>
     </>
   );
