@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Lottie from "lottie-react";
 import animationData from "../assets/Lottie/contactus.json";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const { user } = useContext(AuthContext);
@@ -42,14 +43,22 @@ const Contact = () => {
   return (
     <div className="  flex  items-center justify-center px-6 py-12">
       <div className=" rounded-2xl  grid grid-cols-1 md:grid-cols-2 max-w-5xl w-full overflow-hidden">
+
         {/* Lottie Animation */}
-        <div className="bg-[#EEF2FF] flex items-center justify-center p-8 rounded-2xl">
+        <div className="hidden md:flex items-center justify-center p-8 rounded-2xl">
           <Lottie animationData={animationData} loop={true} className="w-full max-w-sm" />
         </div>
 
         {/* Contact Form */}
         <div className="p-10 bg-[#EEF2FF] rounded-2xl ml-2">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Contact Us</h2>
+           <motion.h2
+      className="text-3xl font-semibold text-gray-800 mb-6 text-center"
+      initial={{ opacity: 0, y: -30, scale: 0.8 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      Contact Us
+    </motion.h2>
 
           <form onSubmit={handleSubmit} className="space-y-5 ">
             {/* Name */}

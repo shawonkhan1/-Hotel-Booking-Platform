@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import NoDataFound from "./NoDataFound";
 import Loadings from "../Components/Loading";
-
+import { motion } from "framer-motion";
 const Admin = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -82,9 +82,14 @@ const Admin = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6  rounded-lg ">
-      <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
-        Contact Messages
-      </h1>
+       <motion.h2
+      className="text-3xl font-semibold text-blue-600 mb-6 text-center"
+      initial={{ opacity: 0, y: -30, scale: 0.8 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      Contact Message
+    </motion.h2>
 
       {contacts.length === 0 ? (
         <NoDataFound />

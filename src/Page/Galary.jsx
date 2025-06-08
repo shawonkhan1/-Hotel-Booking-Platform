@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../Components/Loading";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const Galary = () => {
   const [category, setCategory] = useState("hotel");
@@ -25,7 +26,16 @@ const Galary = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-8 text-center">Hotel Gallery</h1>
+      <motion.h1
+        className="text-4xl md:text-4xl  tracking-tight  text-transparent select-none   drop-shadow-lg
+        font-bold  bg-clip-text mb-12  text-center
+        bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 "
+        initial={{ opacity: 0, y: -50, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        Hotel Gallery
+      </motion.h1>
 
       {/* category buttons */}
       <div className="flex justify-center gap-4 mb-8">
@@ -59,11 +69,11 @@ const Galary = () => {
           </div>
         ))}
       </div>
-     <div className="flex justify-center mt-10">
-        <Link to='/'>
-         <button className="btn btn-p">Back To Home</button>
+      <div className="flex justify-center mt-10">
+        <Link to="/">
+          <button className="btn btn-p">Back To Home</button>
         </Link>
-     </div>
+      </div>
     </div>
   );
 };

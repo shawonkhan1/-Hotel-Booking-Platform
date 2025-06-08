@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Loading from "../Components/Loading";
 import { Helmet } from "react-helmet";
 import register from "../assets/Lottie/Register.json";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const { createUser, setUser, updateuser, googleLogin } =
@@ -85,21 +86,33 @@ const Register = () => {
         <div className=" rounded-3xl max-w-5xl w-full grid md:grid-cols-2 overflow-hidden">
           {/* Left Side - Animation */}
           <div className="hidden md:flex items-center justify-center  mr-4  p-10 rounded-2xl">
-            <Lottie animationData={register} loop={true} className="w-full max-w-md" />
+            <Lottie
+              animationData={register}
+              loop={true}
+              className="w-full max-w-md"
+            />
           </div>
 
           {/* Right Side - Register Form */}
           <div className="p-10 bg-indigo-100 rounded-2xl">
-            <h2 className="text-4xl font-extrabold text-indigo-700 text-center mb-6">
+            <motion.h2
+              className="text-3xl font-semibold  text-blue-600 mb-6 text-center"
+              initial={{ opacity: 0, y: -30, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               Create Account
-            </h2>
+            </motion.h2>
 
             {loading ? (
               <Loading />
             ) : (
               <form onSubmit={handleRegister} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-indigo-700 font-semibold mb-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-indigo-700 font-semibold mb-1"
+                  >
                     Name
                   </label>
                   <input
@@ -113,7 +126,10 @@ const Register = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="photo" className="block text-indigo-700 font-semibold mb-1">
+                  <label
+                    htmlFor="photo"
+                    className="block text-indigo-700 font-semibold mb-1"
+                  >
                     Photo URL
                   </label>
                   <input
@@ -126,7 +142,10 @@ const Register = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-indigo-700 font-semibold mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-indigo-700 font-semibold mb-1"
+                  >
                     Email
                   </label>
                   <input
@@ -140,7 +159,10 @@ const Register = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-indigo-700 font-semibold mb-1">
+                  <label
+                    htmlFor="password"
+                    className="block text-indigo-700 font-semibold mb-1"
+                  >
                     Password
                   </label>
                   <input
@@ -160,7 +182,9 @@ const Register = () => {
                   Register
                 </button>
 
-                <div className="text-center text-blue-600 font-semibold">OR</div>
+                <div className="text-center text-blue-600 font-semibold">
+                  OR
+                </div>
 
                 <button
                   onClick={handleGoogleLogin}
@@ -177,7 +201,10 @@ const Register = () => {
 
                 <p className="text-center text-gray-600 mt-4">
                   Already have an account?{" "}
-                  <Link to="/login" className="text-indigo-600 font-semibold hover:underline">
+                  <Link
+                    to="/login"
+                    className="text-indigo-600 font-semibold hover:underline"
+                  >
                     Login
                   </Link>
                 </p>

@@ -7,6 +7,7 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import Loading from "../Components/Loading";
 import AdddataLottie from "../Components/AdddataLottie";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
@@ -34,6 +35,8 @@ const MyBooking = () => {
   useEffect(() => {
     if (user?.email) fetchBookings();
   }, [user]);
+
+  // cancel
 
   const handleCancel = (booking) => {
     const cancelDeadline = moment(booking.bookedAt).subtract(1, "days");
@@ -85,6 +88,7 @@ const MyBooking = () => {
     setUpdatedDate(booking.bookedAt?.slice(0, 10));
   };
 
+  // update
   const handleUpdate = (id) => {
     const selectedDate = moment(updatedDate);
     if (selectedDate.isBefore(moment().startOf("day"))) {
@@ -112,6 +116,7 @@ const MyBooking = () => {
     setShowModal(true);
   };
 
+  // revew
   const handleSubmitReview = () => {
     const review = {
       username: user.displayName,
@@ -137,9 +142,14 @@ const MyBooking = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
-      <h1 className="text-3xl text-blue-600  font-bold text-center mb-6">
+      <motion.h2
+        className="text-3xl font-bold text-blue-600 mb-6 text-center"
+        initial={{ opacity: 0, y: -30, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         🛌 My Bookings
-      </h1>
+      </motion.h2>
 
       <div className="overflow-x-auto rounded shadow">
         <table className="table w-full">
@@ -218,54 +228,70 @@ const MyBooking = () => {
       </div>
 
       {/* Review Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
-          <div className="bg-white text-black p-6 rounded-lg shadow-lg w-full max-w-md">
-            <h2 className="text-xl font-semibold mb-4">Submit Your Review</h2>
-            <p>
-              <strong>User: {user.displayName}</strong>
-            </p>
-            <div className="mt-4">
-              <label className="block font-medium mb-1">Rating</label>
-              <Rating
-                fractions={2}
-                initialRating={reviewData.rating}
-                onChange={(rate) =>
-                  setReviewData({ ...reviewData, rating: rate })
-                }
-                emptySymbol={<span className="text-2xl">☆</span>}
-                fullSymbol={<span className="text-yellow-400 text-2xl">★</span>}
-              />
-            </div>
-            <div className="mt-4">
-              <label className="block font-medium mb-1">Comment</label>
-              <textarea
-                rows="3"
-                value={reviewData.comment}
-                onChange={(e) =>
-                  setReviewData({ ...reviewData, comment: e.target.value })
-                }
-                className="w-full border rounded px-2 py-1"
-                placeholder="Write your review"
-              ></textarea>
-            </div>
-            <div className="flex justify-end gap-2 mt-4">
-              <button
-                onClick={() => setShowModal(false)}
-                className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded"
-              >
-                Close
-              </button>
-              <button
-                onClick={handleSubmitReview}
-                className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0  bg-opacity-20 backdrop-blur-sm flex justify-center items-center z-50"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white text-black p-6 rounded-lg shadow-lg w-full max-w-md"
+            >
+              <h2 className="text-xl font-semibold mb-4">Submit Your Review</h2>
+              <p>
+                <strong>User: {user.displayName}</strong>
+              </p>
+              <div className="mt-4">
+                <label className="block font-medium mb-1">Rating</label>
+                <Rating
+                  fractions={2}
+                  initialRating={reviewData.rating}
+                  onChange={(rate) =>
+                    setReviewData({ ...reviewData, rating: rate })
+                  }
+                  emptySymbol={<span className="text-2xl">☆</span>}
+                  fullSymbol={
+                    <span className="text-yellow-400 text-2xl">★</span>
+                  }
+                />
+              </div>
+              <div className="mt-4">
+                <label className="block font-medium mb-1">Comment</label>
+                <textarea
+                  rows="3"
+                  value={reviewData.comment}
+                  onChange={(e) =>
+                    setReviewData({ ...reviewData, comment: e.target.value })
+                  }
+                  className="w-full border rounded px-2 py-1"
+                  placeholder="Write your review"
+                ></textarea>
+              </div>
+              <div className="flex justify-end gap-2 mt-4">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={handleSubmitReview}
+                  className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
+                >
+                  Submit
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
