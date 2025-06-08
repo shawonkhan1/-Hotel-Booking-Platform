@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import Loading from "../Components/Loading";
+import { motion } from "framer-motion";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/reviews")  // তোমার API URL
+    fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -20,25 +21,46 @@ const Reviews = () => {
   }, []);
 
   if (loading) {
-    <Loading></Loading>
+    return <Loading />;
   }
 
   return (
-    <div className=" py-4">
-      <h2 className="text-center text-2xl font-bold mb-4">User Reviews</h2>
+    <div className="py-4">
+
+
+      
+      <motion.h2
+  className="text-center text-2xl font-bold mb-4 text-indigo-600 tracking-wide drop-shadow-md"
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: [1, 1.1, 1] }}
+  transition={{
+    duration: 2,
+    repeat: Infinity,
+    repeatType: 'loop',
+    ease: 'easeInOut',
+  }}
+>
+  ✨ User Reviews ✨
+</motion.h2>
+
+
       <Marquee pauseOnHover={true} gradient={false} speed={50}>
         {reviews.map((review) => (
-          <div
+          <motion.div
             key={review._id}
-            className="mx-4 bg-white p-4 rounded shadow-md min-w-[250px]"
+            className="mx-4 bg-gray-100 p-4 rounded shadow-md min-w-[250px]"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.05 }}
           >
             <p className="font-semibold text-black">{review.username}</p>
             <p className="text-yellow-500">Rating: {"⭐".repeat(review.rating)}</p>
-            <p className="italic text-gray-600 mt-2">"{review.comment}"</p>
-            <p className="text-xs text-gray-400 mt-2">
+            <p className="italic text-gray-700 mt-2">"{review.comment}"</p>
+            <p className="text-xs text-gray-500 mt-2">
               {new Date(review.createdAt).toLocaleString()}
             </p>
-          </div>
+          </motion.div>
         ))}
       </Marquee>
     </div>

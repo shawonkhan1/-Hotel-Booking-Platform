@@ -56,16 +56,24 @@ const Rooms = () => {
     <div className="p-4">
       <motion.h1
         animate={{
-          color: ["#124ce5", "#5fe512", "#12e5ae "],
-          transition: { duration: 5, repeat: Infinity },
+          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
         }}
-        className="text-center font-bold text-blue-600 text-4xl mb-6"
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="text-center text-4xl lg:text-5xl font-extrabold mb-10 bg-[linear-gradient(-45deg,#0ea5e9,#6366f1,#10b981,#ec4899)] bg-[length:300%_300%] bg-clip-text text-transparent tracking-tight leading-tight"
       >
-        Find the Right Room for You
+        Find the Perfect Room for Your Stay
       </motion.h1>
 
       {/* Filter Dropdown */}
-      <h1 className="flex justify-end text-2xl  mb-3 ">Price Range</h1>
+
+    <h1 className="flex justify-end text-2xl font-semibold mb-3 text-indigo-700 hover:text-indigo-900 transition-colors duration-300">
+  Price Range
+</h1>
+
       <div className="flex justify-end">
         <div className="mb-8 flex justify-center">
           <select

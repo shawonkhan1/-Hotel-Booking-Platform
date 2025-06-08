@@ -7,6 +7,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Loading from "../Components/Loading";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const RoomDetails = () => {
   const navigate = useNavigate();
@@ -43,13 +44,23 @@ const RoomDetails = () => {
         Sorry, room not found.
       </div>
     );
-
-  const openModal = () => setModalOpen(true);
+  // open modal ar jnno strt
+  // const openModal = () => setModalOpen(true);
+  const openModal = () => {
+    if (!user) {
+      toast.warning("You must be logged in to book a room.");
+      return;
+    }
+    setModalOpen(true);
+  };
+  // open modal ar jnno  end
   const closeModal = () => setModalOpen(false);
 
   const averageRating =
     reviews.length > 0
-      ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+      ? (
+          reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+        ).toFixed(1)
       : null;
 
   const confirmBooking = () => {
@@ -73,17 +84,21 @@ const RoomDetails = () => {
       .then(() => {
         Swal.fire({
           title: "Booking Confirmed!",
-          html: ` Your booking for <strong>${room.title}</strong> on <strong>${bookingDate.toLocaleDateString()}</strong> is confirmed.`,
+          html: ` Your booking for <strong>${
+            room.title
+          }</strong> on <strong>${bookingDate.toLocaleDateString()}</strong> is confirmed.`,
           icon: "success",
           confirmButtonColor: "#1E3A8A",
         });
-        setRoom({ ...room, features: { ...room.features, availability: false } });
+        setRoom({
+          ...room,
+          features: { ...room.features, availability: false },
+        });
         setModalOpen(false);
         navigate("/myBooking");
       })
       .catch((err) => {
         toast.error(err.response?.data?.error || " Booking failed. Try again.");
-       
       });
   };
 
@@ -93,33 +108,54 @@ const RoomDetails = () => {
       <div className="flex flex-col md:flex-row gap-8 items-start">
         <div className="w-full md:w-1/2 rounded-xl overflow-hidden border-2 border-[#1E3A8A] shadow-md">
           <img
-            src={room.cover || "https://via.placeholder.com/600x400?text=No+Image"}
+            src={
+              room.cover || "https://via.placeholder.com/600x400?text=No+Image"
+            }
             alt={room.title}
             className="w-full h-64 object-cover hover:scale-105 transition-transform"
           />
         </div>
 
         <div className="w-full md:w-1/2 space-y-4">
+        
           <h2 className="text-4xl font-bold text-blue-600">{room.title}</h2>
+
+
           <span className="bg-blue-100 text-[#1E3A8A] px-3 py-1 rounded-full text-sm font-medium">
             🏷️ {room.category || "Standard"}
           </span>
 
-          <p className="text-lg text-gray-700">{room.description || "No description available."}</p>
-          <p className="text-xl text-black font-semibold">৳{room.price} / night</p>
+          <p className="text-lg text-gray-700">
+            {room.description || "No description available."}
+          </p>
+          <p className="text-xl text-black font-semibold">
+            ৳{room.price} / night
+          </p>
 
           <div className="space-y-1 text-black">
-            <p><strong>Guests:</strong> {room.features.maxGuests}</p>
-            <p><strong>Room Size:</strong> {room.features.size || "N/A"}</p>
-            <p><strong>Bed Type:</strong> {room.features.bedType || "N/A"}</p>
+            <p>
+              <strong>Guests:</strong> {room.features.maxGuests}
+            </p>
+            <p>
+              <strong>Room Size:</strong> {room.features.size || "N/A"}
+            </p>
+            <p>
+              <strong>Bed Type:</strong> {room.features.bedType || "N/A"}
+            </p>
             <p>
               <strong>Status:</strong>{" "}
-              <span className={room.features.availability ? "text-green-600" : "text-red-500"}>
+              <span
+                className={
+                  room.features.availability ? "text-green-600" : "text-red-500"
+                }
+              >
                 {room.features.availability ? "Available" : "Booked"}
               </span>
             </p>
             {room.cancellationPolicy && (
-              <p className="text-sm italic text-gray-500">{room.cancellationPolicy}</p>
+              <p className="text-sm italic text-gray-500">
+                {room.cancellationPolicy}
+              </p>
             )}
           </div>
 
@@ -153,42 +189,59 @@ const RoomDetails = () => {
       <hr className="my-12 border-t-2 border-gray-200" />
 
       {/* Reviews */}
-      <div>
-        <h3 className="text-3xl font-bold mb-2 text-[#1E3A8A]">
-          Guest Reviews ({reviews.length})
-        </h3>
-        {averageRating && (
-          <p className="text-lg font-semibold text-yellow-500 mb-4">
-            ⭐ Average Rating: {averageRating}/5
-          </p>
-        )}
+    <div>
+  <h3 className="text-3xl font-bold mb-2 text-[#1E3A8A]">
+    Guest Reviews ({reviews.length})
+  </h3>
+  {averageRating && (
+    <p className="text-lg font-semibold text-yellow-500 mb-4">
+      ⭐ Average Rating: {averageRating}/5
+    </p>
+  )}
 
-        {reviews.length === 0 ? (
-          <p className="text-gray-500 italic">No reviews for this room yet.</p>
-        ) : (
-          <ul className="space-y-6">
-            {reviews.map((review) => (
-              <li
-                key={review._id}
-                className="p-4 border border-[#1E3A8A] rounded-xl shadow-sm bg-blue-50"
-              >
-                <p className="font-semibold text-[#1E3A8A]">{review.username}</p>
-                <p>
-                  Rating:{" "}
-                  <span className="font-bold text-yellow-500">
-                    {"⭐".repeat(review.rating)}{" "}
-                    <small className="text-gray-600">({review.rating})</small>
-                  </span>
-                </p>
-                <p className="italic text-gray-700 mt-2">{review.comment}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {new Date(review.createdAt).toLocaleString()}
-                </p>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+  {reviews.length === 0 ? (
+    <p className="text-gray-500 italic">No reviews for this room yet.</p>
+  ) : (
+    <motion.ul
+      className="space-y-6"
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.15,
+          },
+        },
+      }}
+    >
+      {reviews.map((review) => (
+        <motion.li
+          key={review._id}
+          className="p-4 border border-[#1E3A8A] rounded-xl shadow-sm bg-blue-50"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+          }}
+          whileHover={{ scale: 1.03, boxShadow: "0 8px 15px rgba(30, 58, 138, 0.3)" }}
+        >
+          <p className="font-semibold text-[#1E3A8A]">{review.username}</p>
+          <p>
+            Rating:{" "}
+            <span className="font-bold text-yellow-500">
+              {"⭐".repeat(review.rating)}{" "}
+              <small className="text-gray-600">({review.rating})</small>
+            </span>
+          </p>
+          <p className="italic text-gray-700 mt-2">{review.comment}</p>
+          <p className="text-xs text-gray-500 mt-1">
+            {new Date(review.createdAt).toLocaleString()}
+          </p>
+        </motion.li>
+      ))}
+    </motion.ul>
+  )}
+</div>
 
       {/* Booking Modal */}
       {modalOpen && (
@@ -213,9 +266,15 @@ const RoomDetails = () => {
                 Confirm Booking
               </h2>
 
-              <p className="mb-2 text-[#1E3A8A]"><strong>Room:</strong> {room.title}</p>
-              <p className="mb-2 text-[#1E3A8A]"><strong>Price per night:</strong> ৳{room.price}</p>
-              <p className="mb-2 text-[#1E3A8A]"><strong>Your Email:</strong> {user.email}</p>
+              <p className="mb-2 text-[#1E3A8A]">
+                <strong>Room:</strong> {room.title}
+              </p>
+              <p className="mb-2 text-[#1E3A8A]">
+                <strong>Price per night:</strong> ৳{room.price}
+              </p>
+              <p className="mb-2 text-[#1E3A8A]">
+                <strong>Your Email:</strong> {user.email}
+              </p>
 
               <div className="mb-6">
                 <label
@@ -252,6 +311,7 @@ const RoomDetails = () => {
           </div>
         </>
       )}
+
     </section>
   );
 };
