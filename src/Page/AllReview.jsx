@@ -30,7 +30,7 @@ const Reviews = () => {
 
       
       <motion.h2
-  className="text-center text-2xl font-bold mb-4 text-indigo-600 tracking-wide drop-shadow-md"
+  className="text-center heading text-2xl font-bold mb-4 text-indigo-600 tracking-wide drop-shadow-md"
   initial={{ opacity: 0, scale: 0.8 }}
   animate={{ opacity: 1, scale: [1, 1.1, 1] }}
   transition={{
@@ -54,10 +54,10 @@ const Reviews = () => {
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
           >
-            <p className="font-semibold text-black">{review.username}</p>
-            <p className="text-yellow-500">Rating: {"⭐".repeat(review.rating)}</p>
-            <p className="italic text-gray-700 mt-2">"{review.comment}"</p>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="font-semibold text-black heading">{review.username}</p>
+            <p className="text-yellow-500 description">Rating: {"⭐".repeat(review.rating)}</p>
+            <p className="italic description text-gray-700 mt-2">"{review.comment}"</p>
+            <p className="text-xs description text-gray-500  mt-2">
               {new Date(review.createdAt).toLocaleString()}
             </p>
           </motion.div>

@@ -56,7 +56,7 @@ const FeaturedRoom = () => {
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        className="text-center font-bold text-4xl mb-8 text-[#1E3A8A]"
+        className="text-center heading font-bold text-4xl mb-8 text-[#1E3A8A]"
       >
         Our{" "}
         <motion.span
@@ -93,16 +93,16 @@ const FeaturedRoom = () => {
               <img
                 src={room.cover}
                 alt={room.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
+                className="w-full  h-48 object-cover rounded-md mb-4"
               />
-              <h2 className="text-xl font-semibold">{room.title}</h2>
+              <h2 className="text-xl font-semibold heading">{room.title}</h2>
               <p>Price: ৳{room.price}</p>
               <p>Category: {room.category}</p>
               <p>Guests: {room.maxGuests}</p>
               <p>Bed: {room.bedType}</p>
-              <p className="mt-2 mb-4 flex-grow">{room.description}</p>
+              <p className="mt-2 mb-4 flex-grow description">{room.description}</p>
 
-              <p>
+              <p className="description">
                 <strong>Reviews: </strong>
                 {reviewsCount[room._id] ?? 0}
               </p>

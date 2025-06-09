@@ -72,7 +72,7 @@ const Login = () => {
             {/* Login Form */}
             <div className="p-8 md:p-10 bg-indigo-100  rounded-2xl">
               <motion.h2
-                className="text-3xl  text-blue-600 font-semibold  mb-6 text-center"
+                className="text-3xl heading text-blue-600 font-semibold  mb-6 text-center"
                 initial={{ opacity: 0, y: -30, scale: 0.8 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}

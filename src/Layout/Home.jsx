@@ -63,7 +63,7 @@ const Home = () => {
               damping: 10,
             }}
             whileHover={{ scale: 1.1, rotate: 5, color: "#1E40AF" }}
-            className="text-3xl font-extrabold mb-6 text-center select-none cursor-pointer"
+            className="text-3xl heading font-extrabold mb-6 text-center select-none cursor-pointer"
           >
             Our Location
           </motion.h2>

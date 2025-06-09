@@ -18,9 +18,9 @@ const UserProfile = () => {
       <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-10">
         
         {/* Profile Card */}
-        <div className="bg-white shadow-[0_0_8px_2px_#2ee235] rounded-2xl p-6 w-full max-w-sm text-center">
+        <div className="bg-white  shadow-[0_0_8px_2px_#2ee235] rounded-2xl p-6 w-full max-w-sm text-center">
           {/* Heading inside card */}
-          <h1 className="text-2xl font-bold text-green-700 mb-4">
+          <h1 className="text-2xl heading font-bold text-green-700 mb-4">
             Your Profile
           </h1>
 
@@ -42,7 +42,7 @@ const UserProfile = () => {
         </div>
 
         {/* Lottie Animation */}
-        <div className="w-full max-w-xs md:max-w-md lg:max-w-lg">
+        <div className="w-full  max-w-xs md:max-w-md lg:max-w-lg">
           <Lottie animationData={profile} loop={true} />
         </div>
       </div>

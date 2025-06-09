@@ -39,7 +39,7 @@ const UpdateProfile = () => {
         <div className="card w-full max-w-sm bg-base-100 shadow-[0px_0px_15px_0px_rgba(22,36,216,0.5),0px_0px_30px_0px_rgba(0,0,255,0.5)] shadow-2xl">
           <div className="card-body">
             <form onSubmit={handleUpdateProfile}>
-              <h1 className="text-2xl text-center font-bold mb-4">
+              <h1 className="text-2xl heading text-center font-bold mb-4">
                 Update Your Profile
               </h1>
 
@@ -64,7 +64,7 @@ const UpdateProfile = () => {
               />
 
               {/* Submit Button */}
-              <button type="submit" className="btn btn-primary mt-4 w-full">
+              <button type="submit" className="btn btn-p mt-4 w-full">
                 Update
               </button>
             </form>

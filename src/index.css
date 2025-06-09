@@ -27,3 +27,15 @@
   background-color: black;
   color: white;
 }
+
+
+
+/* index.css বা যেকোনো CSS ফাইল */
+.heading {
+  font-family: 'Playfair Display', serif;
+
+}
+
+.description {
+  font-family: 'Source Sans 3', sans-serif;
+}

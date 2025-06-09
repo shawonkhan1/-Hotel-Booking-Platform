@@ -23,14 +23,14 @@ const DanceModal = ({ isOpen, onClose }) => {
           &times;
         </button>
 
-        <h3 className="text-2xl font-semibold mb-4 text-center text-indigo-600">
-          My name is Tawhid Hasan Bijoy
+        <h3 className="text-2xl heading font-semibold mb-4 text-center text-indigo-600">
+         🙋 I'm Tawhid Hasan Bijoy
         </h3>
 
         <div className="w-full">
           <Lottie animationData={dance} loop={true} />
         </div>
-        <h1 className="text-2xl font-semibold mb-4 text-center text-indigo-600">I am a dedicated dancer. </h1>
+        <h1 className="text-2xl font-semibold mb-4 text-center heading text-indigo-600">A dedicated dancer</h1>
       </div>
       
     </div>
@@ -44,7 +44,7 @@ const DancePage = () => {
     <div className="flex flex-col items-center justify-center p-6 bg-transparent">
       <button
         onClick={() => setModalOpen(true)}
-        className="bg-indigo-600 text-white px-6 py-3 rounded-md shadow-md hover:bg-indigo-700 transition"
+        className="bg-indigo-600 heading  text-white px-6 py-3 rounded-md shadow-md hover:bg-indigo-700 transition"
       >
        View the dancer’s performance
       </button>

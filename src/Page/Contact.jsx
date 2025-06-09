@@ -52,7 +52,7 @@ const Contact = () => {
         {/* Contact Form */}
         <div className="p-10 bg-[#EEF2FF] rounded-2xl ml-2">
            <motion.h2
-      className="text-3xl font-semibold text-gray-800 mb-6 text-center"
+      className="text-3xl heading font-semibold text-gray-800 mb-6 text-center"
       initial={{ opacity: 0, y: -30, scale: 0.8 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}

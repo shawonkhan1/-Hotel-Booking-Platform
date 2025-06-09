@@ -28,7 +28,7 @@ const Galary = () => {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <motion.h1
-        className="text-4xl md:text-4xl  tracking-tight  text-transparent select-none   drop-shadow-lg
+        className="text-4xl heading md:text-4xl  tracking-tight  text-transparent select-none   drop-shadow-lg
         font-bold  bg-clip-text mb-12  text-center
         bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 "
         initial={{ opacity: 0, y: -50, scale: 0.9 }}

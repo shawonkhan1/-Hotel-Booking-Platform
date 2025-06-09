@@ -64,7 +64,7 @@ const Rooms = () => {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="text-center text-4xl lg:text-5xl font-extrabold mb-10 bg-[linear-gradient(-45deg,#0ea5e9,#6366f1,#10b981,#ec4899)] bg-[length:300%_300%] bg-clip-text text-transparent tracking-tight leading-tight"
+        className="text-center heading text-4xl lg:text-5xl font-extrabold mb-10 bg-[linear-gradient(-45deg,#0ea5e9,#6366f1,#10b981,#ec4899)] bg-[length:300%_300%] bg-clip-text text-transparent tracking-tight leading-tight"
       >
         Find the Perfect Room for Your Stay
       </motion.h1>
@@ -99,12 +99,12 @@ const Rooms = () => {
                 alt={room.title}
                 className="w-full h-48 object-cover rounded-md mb-4 transition-all duration-500 ease-in-out group-hover:brightness-105 group-hover:contrast-110"
               />
-              <h2 className="text-xl font-semibold text-[#1e293b]">{room.title}</h2>
-              <p className="text-[#475569]">Price: ৳{room.price}</p>
-              <p className="text-[#475569]">Category: {room.category}</p>
-              <p className="text-[#475569]">Guests: {room.features.maxGuests}</p>
-              <p className="text-[#475569]">Bed: {room.features.bedType}</p>
-              <p className="mt-2 mb-4 text-sm text-[#64748b] flex-grow">
+              <h2 className="text-xl  font-semibold text-[#1e293b]">{room.title}</h2>
+              <p className="text-[#475569] description">Price: ৳{room.price}</p>
+              <p className="text-[#475569] description">Category: {room.category}</p>
+              <p className="text-[#475569] description">Guests: {room.features.maxGuests}</p>
+              <p className="text-[#475569] description">Bed: {room.features.bedType}</p>
+              <p className="mt-2 mb-4 text-sm text-[#64748b] flex-grow description">
                 {room.description}
               </p>
               <button className="btn btn-primary mt-4">Details</button>

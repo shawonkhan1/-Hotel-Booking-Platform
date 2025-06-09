@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const Faq = () => {
   const [faqs, setFaqs] = useState([]);
-  const [openIndex, setOpenIndex] = useState(null);
 
   useEffect(() => {
     fetch('/Faq.json')
@@ -12,72 +10,28 @@ const Faq = () => {
       .catch(err => console.error("Error loading FAQ data:", err));
   }, []);
 
-  const toggleAnswer = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      
+    <section className="w-full bg-base-100 py-16 px-4 md:px-8 lg:px-16">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl heading font-bold text-center text-indigo-600 mb-12 tracking-wide leading-tight drop-shadow-sm">
+          Frequently Asked Questions
+        </h2>
 
-
-    <motion.h2
-  className="text-3xl font-bold text-center mb-8 text-indigo-600 tracking-wider drop-shadow-sm"
-  initial={{ opacity: 0, y: -20 }}
-  animate={{ opacity: [0, 1, 0.9, 1], y: [0, -5, 5, 0] }}
-  transition={{
-    duration: 3,
-    repeat: Infinity,
-    repeatType: 'loop',
-    ease: 'easeInOut',
-  }}
->
-  ❓ Frequently Asked Questions ❓
-</motion.h2>
-
-
-
-      <div className="space-y-4">
-        {faqs.map((faq, index) => (
-          <div key={index} className="border border-gray-200 rounded-xl shadow-sm overflow-hidden transition-all">
-            <button
-              onClick={() => toggleAnswer(index)}
-              className="w-full text-left px-6 py-4 bg-white hover:bg-gray-50 flex justify-between items-center"
-              aria-expanded={openIndex === index}
-              aria-controls={`faq-content-${index}`}
-              id={`faq-header-${index}`}
-            >
-              <span className="font-medium text-lg text-gray-800">{faq.question}</span>
-              <motion.span
-                initial={false}
-                animate={{ rotate: openIndex === index ? 45 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="text-xl text-indigo-500 select-none"
-              >
-                +
-              </motion.span>
-            </button>
-            <AnimatePresence initial={false}>
-              {openIndex === index && (
-                <motion.div
-                  key="content"
-                  id={`faq-content-${index}`}
-                  role="region"
-                  aria-labelledby={`faq-header-${index}`}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="px-6 py-4 bg-gray-50 text-gray-700"
-                >
-                  {faq.answer}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        ))}
+        <div className="space-y-6">
+          {faqs.map((faq, index) => (
+            <div key={index} className="collapse collapse-arrow bg-white border border-base-300 shadow-md rounded-xl">
+              <input type="radio" name="faq-accordion" defaultChecked={index === 0} />
+              <div className="collapse-title heading font-semibold text-lg md:text-xl text-gray-800">
+                {faq.question}
+              </div>
+              <div className="collapse-content description text-base text-gray-600">
+                {faq.answer}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

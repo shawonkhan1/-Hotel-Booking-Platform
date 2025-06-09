@@ -47,7 +47,7 @@ const Banner = () => {
                   initial={{ y: -50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-                  className="text-white text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg"
+                  className="text-white heading text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg"
                 >
                   {slide.title}
                 </motion.h2>
@@ -57,7 +57,7 @@ const Banner = () => {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                  className="text-gray-200 text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto drop-shadow-md"
+                  className="text-gray-200 description text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto drop-shadow-md"
                 >
                   {slide.description}
                 </motion.p>

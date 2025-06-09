@@ -16,7 +16,7 @@ const Services = () => {
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <motion.h2
-      className="text-4xl font-bold mb-6 text-blue-600"
+      className="text-4xl heading font-bold mb-6 text-blue-600"
       animate={{
         x: ['-20px', '20px', '-20px'],
       }}
@@ -29,11 +29,11 @@ const Services = () => {
       Our Services
     </motion.h2>
 
-        <p className="mb-12 text-black text-2xl max-w-2xl mx-auto">
+        <p className="mb-12 description text-black text-2xl max-w-2xl mx-auto">
           The best features we offer for your hotel booking experience.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 heading sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {services.map(({ id, icon, title, description }, index) => {
             const IconComponent = FaIcons[icon] || FaIcons.FaStar;
 
