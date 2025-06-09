@@ -28,7 +28,7 @@ const Footer = () => {
 
   {/* YouTube */}
   <a
-    href="https://youtu.be/d-0IN2pt2kI?si=FUvzvPkmxbZwYGK_"
+    href="https://youtu.be/1OAjeECW90E?si=mita7BvUeQJaQ0QX"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="YouTube"
@@ -39,7 +39,7 @@ const Footer = () => {
 
   {/* Facebook */}
   <a
-    href="https://www.facebook.com/"
+    href="https://web.facebook.com/MD1Shawon"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Facebook"
@@ -57,9 +57,9 @@ const Footer = () => {
               href="mailto:support@easystay.com"
               className=" hover:underline"
             >
-              support@easystay.com
+              shawon505214@gmail.com
             </a>{" "}
-            | 📞{" "}
+            | | 📞{" "}
             <a
               href="tel:+8801234567890"
               className=" hover:underline"

@@ -1,10 +1,17 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
+
+/* navlink active */
+
 .active {
    color: #2563EB; 
   font-weight: 600;
 }
+
+
+/* custom color  */
 
 .btn-p {
   @apply bg-blue-600  hover:bg-[#374151] text-white font-semibold px-6 py-3 rounded-full shadow-md hover:shadow-lg transition duration-300;
@@ -15,6 +22,7 @@
 
 
 
+/* dark theme  */
 
 [data-theme="light"] {
   /* light theme styles */
@@ -28,6 +36,9 @@
   color: white;
 }
 
+
+/* footer  3 lottie icon dark mode -> black to white */
+
 [data-theme="synthwave"] .lottie-icon {
   filter: invert(1) brightness(2) saturate(3);
 }
@@ -36,8 +47,8 @@
 
 
 
+/* custom google fonts */
 
-/* index.css বা যেকোনো CSS ফাইল */
 .heading {
   font-family: 'Playfair Display', serif;
 
