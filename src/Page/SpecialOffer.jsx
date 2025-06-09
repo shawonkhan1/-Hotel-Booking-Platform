@@ -14,12 +14,12 @@ const SpecialOffer = () => {
 
   return (
     <div
-      className="fixed inset-0  bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
+      className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
       aria-modal="true"
       role="dialog"
       aria-labelledby="specialOfferTitle"
     >
-      <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6 relative">
+      <div className="bg-white border-b-10 border-blue-400 rounded-2xl shadow-lg max-w-md w-full p-6 relative">
         <button
           onClick={() => setIsOpen(false)}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-3xl font-bold"
@@ -30,7 +30,7 @@ const SpecialOffer = () => {
 
         <motion.h2
           id="specialOfferTitle"
-          className="text-2xl font-bold text-center mb-4 text-blue-600"
+          className="text-2xl heading font-bold text-center mb-4 text-blue-600"
           animate={{
             scale: [1, 1.05, 1],
             color: [
@@ -57,14 +57,14 @@ const SpecialOffer = () => {
         </motion.h2>
 
         <motion.img
-  src="https://i.ibb.co/MxkBcGhw/pexels-fotoaibe-1743231.jpg"
-  alt="Special Offer"
-  className="rounded-lg mx-auto mb-4 shadow-md max-h-60 object-cover cursor-pointer"
-  whileHover={{ scale: 1.1 }}
-  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-/>
+          src="https://i.ibb.co/MxkBcGhw/pexels-fotoaibe-1743231.jpg"
+          alt="Special Offer"
+          className="rounded-lg mx-auto mb-4 shadow-md max-h-60 object-cover cursor-pointer"
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        />
 
-        <p className="text-center text-gray-700 mb-6 leading-relaxed">
+        <p className="text-center description text-gray-700 mb-6 leading-relaxed">
           Book your stay now and enjoy up to{" "}
           <span className="font-bold text-indigo-600 underline">25% OFF</span>{" "}
           for bookings longer than 3 days! Don’t miss out on this limited-time

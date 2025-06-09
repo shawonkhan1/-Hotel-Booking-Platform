@@ -34,12 +34,11 @@ const UpdateProfile = () => {
 
       {/* Container */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-10 mt-20 px-4">
-        
         {/* Form Section */}
-        <div className="card w-full max-w-sm bg-base-100 shadow-[0px_0px_15px_0px_rgba(22,36,216,0.5),0px_0px_30px_0px_rgba(0,0,255,0.5)] shadow-2xl">
+        <div className="card w-full max-w-sm bg-base-100 shadow-[0px_0px_20px_0px_rgba(37,99,235,0.8)] shadow-2xl">
           <div className="card-body">
             <form onSubmit={handleUpdateProfile}>
-              <h1 className="text-2xl heading text-center font-bold mb-4">
+              <h1 className="text-3xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600 mb-4">
                 Update Your Profile
               </h1>
 

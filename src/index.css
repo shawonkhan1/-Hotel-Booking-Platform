@@ -28,6 +28,13 @@
   color: white;
 }
 
+[data-theme="synthwave"] .lottie-icon {
+  filter: invert(1) brightness(2) saturate(3);
+}
+
+
+
+
 
 
 /* index.css বা যেকোনো CSS ফাইল */
