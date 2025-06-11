@@ -3,6 +3,7 @@ import Loading from "../Components/Loading";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import DancePage from "./DancePage";
+import { Helmet } from "react-helmet";
 
 const Galary = () => {
   const [category, setCategory] = useState("hotel");
@@ -26,6 +27,11 @@ const Galary = () => {
   if (!galleryData) return <Loading></Loading>;
 
   return (
+
+    <>
+    <Helmet>
+      <title>Galary</title>
+    </Helmet>
     <div className="max-w-6xl mx-auto p-6">
       <motion.h1
         className="text-4xl heading md:text-4xl  tracking-tight  text-transparent select-none   drop-shadow-lg
@@ -84,6 +90,7 @@ const Galary = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

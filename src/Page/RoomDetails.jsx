@@ -8,6 +8,7 @@ import Loading from "../Components/Loading";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const RoomDetails = () => {
   const navigate = useNavigate();
@@ -103,6 +104,10 @@ const RoomDetails = () => {
   };
 
   return (
+    <>
+    <Helmet>
+      <title>Room Details</title>
+    </Helmet>
     <section className="max-w-6xl mx-auto bg-white p-8 rounded-3xl shadow-md my-16 font-poppins">
       {/* Room Main */}
       <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -313,6 +318,7 @@ const RoomDetails = () => {
       )}
 
     </section>
+    </>
   );
 };
 

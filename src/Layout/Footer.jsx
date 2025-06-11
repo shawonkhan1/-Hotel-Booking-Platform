@@ -73,6 +73,7 @@ const Footer = () => {
             rights reserved.
           </p>
         </div>
+        
       </footer>
     </div>
   );

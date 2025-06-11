@@ -10,6 +10,7 @@ import Maps from "../Page/Maps";
 import { motion } from "framer-motion";
 import DancePage from "../Page/DancePage";
 
+
 const Home = () => {
   return (
     <>
@@ -27,6 +28,8 @@ const Home = () => {
         <div className="mt-10">
           <Services />
         </div>
+
+        
 
         <div className="mt-10">
           <Faq />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import Loading from "../Components/Loading";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const priceRanges = [
   { label: "All", min: "", max: "" },
@@ -53,6 +54,10 @@ const Rooms = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>All Rooms</title>
+    </Helmet>
     <div className="p-4 md:p-8">
       {/* Heading */}
       <motion.h1
@@ -113,6 +118,7 @@ const Rooms = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
