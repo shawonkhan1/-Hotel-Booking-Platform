@@ -15,7 +15,7 @@ const Admin = () => {
 
   const fetchContacts = () => {
     setLoading(true);
-    fetch("http://localhost:3000/contact")
+    fetch("https://assigment-11-server-side.vercel.app/contact")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch contacts");
         return res.json();
@@ -42,7 +42,7 @@ const Admin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         setDeletingId(id);
-        fetch(`http://localhost:3000/contact/${id}`, {
+        fetch(`https://assigment-11-server-side.vercel.app/contact/${id}`, {
           method: "DELETE",
         })
           .then((res) => {

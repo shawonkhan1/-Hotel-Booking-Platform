@@ -19,7 +19,7 @@ const Contact = () => {
       message,
     };
 
-    fetch("http://localhost:3000/contact", {
+    fetch("https://assigment-11-server-side.vercel.app/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -8,7 +8,7 @@ const Reviews = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/reviews")
+    fetch("https://assigment-11-server-side.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

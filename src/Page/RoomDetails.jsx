@@ -25,7 +25,7 @@ const RoomDetails = () => {
     setLoading(true);
 
     axios
-      .get(`http://localhost:3000/rooms/${id}`)
+      .get(`https://assigment-11-server-side.vercel.app/rooms/${id}`)
       .then((res) => {
         setRoom(res.data);
         setLoading(false);
@@ -33,7 +33,7 @@ const RoomDetails = () => {
       .catch(() => setLoading(false));
 
     axios
-      .get(`http://localhost:3000/reviews/${id}`)
+      .get(`https://assigment-11-server-side.vercel.app/reviews/${id}`)
       .then((res) => setReviews(res.data))
       .catch(() => setReviews([]));
   }, [id]);
@@ -76,11 +76,13 @@ const RoomDetails = () => {
     }
 
     axios
-      .post("http://localhost:3000/bookings", {
+      .post("https://assigment-11-server-side.vercel.app/bookings", {
         roomId: room._id,
         email: user.email,
         date: bookingDate.toISOString(),
         image: room.cover,
+         bookedAt: bookingDate.toISOString(),
+
       })
       .then(() => {
         Swal.fire({
@@ -290,6 +292,7 @@ const RoomDetails = () => {
                 </label>
                 <DatePicker
                   id="bookingDate"
+                  
                   selected={bookingDate}
                   onChange={(date) => setBookingDate(date)}
                   minDate={new Date()}

@@ -20,7 +20,7 @@ const Rooms = () => {
 
   const fetchRooms = (minPrice, maxPrice) => {
     setLoading(true);
-    let url = "http://localhost:3000/rooms";
+    let url = "https://assigment-11-server-side.vercel.app/rooms";
 
     if (minPrice !== "" && maxPrice !== "") {
       url += `?minPrice=${minPrice}&maxPrice=${maxPrice}`;

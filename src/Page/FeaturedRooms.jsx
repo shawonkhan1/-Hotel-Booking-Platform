@@ -11,7 +11,7 @@ const FeaturedRoom = () => {
   useEffect(() => {
     const fetchRoomsAndReviews = async () => {
       try {
-        const res = await fetch("http://localhost:3000/rooms");
+        const res = await fetch("https://assigment-11-server-side.vercel.app/rooms");
         const data = await res.json();
 
         const counts = {};
@@ -20,7 +20,7 @@ const FeaturedRoom = () => {
           data.map(async (room) => {
             try {
               const res = await fetch(
-                `http://localhost:3000/reviews/${room._id}`
+                `https://assigment-11-server-side.vercel.app/reviews/${room._id}`
               );
               const reviews = await res.json();
               counts[room._id] = reviews.length;

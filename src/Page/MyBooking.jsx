@@ -27,7 +27,7 @@ const MyBooking = () => {
 
   const fetchBookings = () => {
     axios
-      .get(`http://localhost:3000/bookings/${user.email}`, {
+      .get(`https://assigment-11-server-side.vercel.app/bookings/${user.email}`, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },
@@ -67,12 +67,12 @@ const MyBooking = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/bookings/${booking._id}`)
+          .delete(`https://assigment-11-server-side.vercel.app/bookings/${booking._id}`)
           .then(() => {
             fetchBookings();
             axios
               .patch(
-                `http://localhost:3000/rooms/available/${booking.roomId}`,
+                `https://assigment-11-server-side.vercel.app/rooms/available/${booking.roomId}`,
                 {
                   available: true,
                 }
@@ -108,7 +108,7 @@ const MyBooking = () => {
     }
 
     axios
-      .patch(`http://localhost:3000/booking/${id}`, {
+      .patch(`https://assigment-11-server-side.vercel.app/booking/${id}`, {
         bookedAt: new Date(updatedDate),
       })
       .then(() => {
@@ -139,7 +139,7 @@ const MyBooking = () => {
     };
 
     axios
-      .post("http://localhost:3000/reviews", review)
+      .post("https://assigment-11-server-side.vercel.app/reviews", review)
       .then(() => {
         toast.success(" Review submitted!");
         setShowModal(false);
