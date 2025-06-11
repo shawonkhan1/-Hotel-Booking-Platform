@@ -117,13 +117,13 @@ const Login = () => {
                   {/* Login Button */}
                   <button
                     type="submit"
-                    className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-semibold "
+                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition font-semibold "
                   >
                     Login
                   </button>
 
                   {/* OR */}
-                  <div className="text-center text-blue-600">OR</div>
+                <div className="divider text-black">OR</div>
 
                   {/* Google Login */}
                   <button

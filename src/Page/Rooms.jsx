@@ -76,7 +76,7 @@ const Rooms = () => {
 
       {/* Filter Dropdown */}
       <div className="flex justify-end items-center gap-2 mb-6">
-        <label className="text-indigo-700 font-medium text-lg">Price Range:</label>
+        <label className="text-blue-600 font-medium text-lg">Price Range:</label>
         <select
           className="select select-bordered w-48"
           onChange={handleFilterChange}
@@ -112,7 +112,7 @@ const Rooms = () => {
               <p className="mt-2 mb-4 text-sm text-[#64748b] flex-grow description">
                 {room.description}
               </p>
-              <button className="btn btn-primary mt-4">Details</button>
+              <button className="btn btn-p mt-4">Details</button>
             </div>
           </Link>
         ))}

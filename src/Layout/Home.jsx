@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 import Maps from "../Page/Maps";
 import { motion } from "framer-motion";
 import DancePage from "../Page/DancePage";
+import WhyChoosUs from "../Page/WhyChoosUs";
 
 
 const Home = () => {
@@ -24,11 +25,16 @@ const Home = () => {
         <div className="mt-5">
           <FeaturedRoom />
         </div>
+        
 
         <div className="mt-10">
           <Services />
         </div>
 
+
+    <div>
+          <WhyChoosUs></WhyChoosUs>
+        </div>
         
 
         <div className="mt-10">

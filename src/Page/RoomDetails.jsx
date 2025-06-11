@@ -195,7 +195,7 @@ const RoomDetails = () => {
 
       {/* Reviews */}
     <div>
-  <h3 className="text-3xl font-bold mb-2 text-[#1E3A8A]">
+  <h3 className="text-3xl font-bold mb-2 text-blue-600">
     Guest Reviews ({reviews.length})
   </h3>
   {averageRating && (

@@ -177,14 +177,12 @@ const Register = () => {
 
                 <button
                   type="submit"
-                  className="w-full  bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                  className="w-full  bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
                 >
                   Register
                 </button>
 
-                <div className="text-center text-blue-600 font-semibold">
-                  OR
-                </div>
+                <div className="divider text-black">OR</div>
 
                 <button
                   onClick={handleGoogleLogin}
