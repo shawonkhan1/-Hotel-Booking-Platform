@@ -81,33 +81,37 @@ const FeaturedRoom = () => {
             key={room._id}
             className="block"
           >
-            <motion.div
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 15px 25px rgba(59, 130, 246, 0.4)",
-                transition: { duration: 0.3 },
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="border rounded-lg shadow-md p-4 flex flex-col bg-white h-full cursor-pointer"
-            >
-              <img
-                src={room.cover}
-                alt={room.title}
-                className="w-full  h-48 object-cover rounded-md mb-4"
-              />
-              <h2 className="text-xl font-semibold heading">{room.title}</h2>
-              <p>Price: ৳{room.price}</p>
-              <p>Category: {room.category}</p>
-              <p>Guests: {room.maxGuests}</p>
-              <p>Bed: {room.bedType}</p>
-              <p className="mt-2 mb-4 flex-grow description">{room.description}</p>
+          <motion.div
+  whileHover={{
+    scale: 1.05,
+    boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)", // subtle neutral black shadow
+    transition: { duration: 0.3 },
+  }}
+  whileTap={{ scale: 0.95 }}
+  className="bg-white border border-gray-200 rounded-2xl p-5 shadow-md flex flex-col h-full transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer"
+>
+  <img
+    src={room.cover}
+    alt={room.title}
+    className="w-full h-48 object-cover rounded-md mb-4 transition-all duration-300 ease-in-out hover:brightness-105 hover:contrast-105"
+  />
 
-              <p className="description">
-                <strong>Reviews: </strong>
-                {reviewsCount[room._id] ?? 0}
-              </p>
-              <button className="btn-p btn my-5">Book Now</button>
-            </motion.div>
+  <h2 className="text-xl font-semibold text-gray-800 mb-1">{room.title}</h2>
+  <p className="text-gray-700 text-sm mb-1">Price: ৳{room.price}</p>
+  <p className="text-gray-700 text-sm mb-1">Category: {room.category}</p>
+  <p className="text-gray-700 text-sm mb-1">Guests: {room.maxGuests}</p>
+  <p className="text-gray-700 text-sm mb-1">Bed: {room.bedType}</p>
+
+  <p className="mt-2 mb-4 text-sm text-gray-600 flex-grow">{room.description}</p>
+
+  <p className="text-sm text-gray-800 font-medium mb-4">
+    <strong>Reviews:</strong> {reviewsCount[room._id] ?? 0}
+  </p>
+
+  <button className="btn-p btn my-5">Book Now</button>
+</motion.div>
+
+
           </Link>
         ))}
       </div>
