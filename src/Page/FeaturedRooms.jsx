@@ -56,7 +56,7 @@ const FeaturedRoom = () => {
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        className="text-center heading font-bold text-4xl mb-8 text-[#1E3A8A]"
+        className="text-center heading mt-10 font-bold text-4xl mb-12 text-[#1E3A8A]"
       >
         Our{" "}
         <motion.span

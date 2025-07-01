@@ -24,10 +24,6 @@ export const Links = (
     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/contact">
      ContactUs
     </NavLink>
-    
-
-    
-  
   </>
 );
 

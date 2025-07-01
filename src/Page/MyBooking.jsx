@@ -158,7 +158,7 @@ const MyBooking = () => {
       </Helmet>
       <div className="max-w-6xl mx-auto px-4 py-6">
         <motion.h2
-          className="text-3xl heading font-bold text-blue-600 mb-6 text-center"
+          className="text-3xl heading mt-10 font-bold text-blue-600 mb-12 text-center"
           initial={{ opacity: 0, y: -30, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}

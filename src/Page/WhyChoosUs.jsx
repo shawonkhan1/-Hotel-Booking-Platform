@@ -5,7 +5,7 @@ const WhyChoosUs = () => {
   return (
     <section className="bg-gray-100 mt-10 rounded-2xl py-12 px-6 md:px-20">
     <motion.h2
-      className="text-4xl text-center heading font-bold mb-6 text-blue-600"
+      className="text-4xl text-center heading font-bold mb-12 text-blue-600"
       animate={{
         x: ['-20px', '20px', '-20px'],
       }}

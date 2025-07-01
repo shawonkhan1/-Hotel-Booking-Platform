@@ -83,7 +83,7 @@ const Admin = () => {
   return (
     <div className="max-w-7xl mx-auto p-6  rounded-lg ">
        <motion.h2
-      className="text-3xl heading font-semibold text-blue-600 mb-6 text-center"
+      className="text-3xl heading font-semibold text-blue-600 mb-12 mt-10 text-center"
       initial={{ opacity: 0, y: -30, scale: 0.8 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}

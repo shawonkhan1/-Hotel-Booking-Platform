@@ -13,7 +13,7 @@ const Faq = () => {
   return (
     <section className="w-full bg-base-100 py-16 px-4 md:px-8 lg:px-16">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl heading font-bold text-center text-blue-600 mb-12 tracking-wide leading-tight drop-shadow-sm">
+        <h2 className="text-4xl md:text-5xl heading font-bold text-center text-blue-600 mb-15 tracking-wide leading-tight drop-shadow-sm">
           Frequently Asked Questions
         </h2>
 
