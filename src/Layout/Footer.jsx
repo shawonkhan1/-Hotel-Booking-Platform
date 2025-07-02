@@ -1,9 +1,10 @@
 import React from "react";
-import { Links } from "./Navbar";
+
 import youtube from "../assets/Lottie/Youtube.json";
 import Lottie from "lottie-react";
 import facebook from "../assets/Lottie/facebook22.json";
 import twitter from "../assets/Lottie/twter22.json";
+import Links from "./Links";
 
 const Footer = () => {
   return (
@@ -11,7 +12,7 @@ const Footer = () => {
       <footer className="p-6 max-w-6xl  mx-auto">
         {/* Nav links */}
         <div className="flex  flex-wrap justify-center gap-4 mb-6 text-sm">
-          {Links}
+        <Links></Links>
         </div>
 
        <div className="flex justify-center gap-4 mb-4">

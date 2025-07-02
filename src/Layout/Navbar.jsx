@@ -2,32 +2,33 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 // import users from "../assets/anime-girl-red-eyes-fantasy-4k-wallpaper-uhdpaper.com-716@2@b.jpg";
 
-
 import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
+import Links from "./Links";
 
-export const Links = (
-  <>
-    <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/">
-      Home
-    </NavLink>
-    <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/allRoom">
-     Rooms
-    </NavLink>
-     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/galary">
-      Galary
-    </NavLink>
-    <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/myBooking">
-      My Bookings
-    </NavLink>
+// export const Links = (
+//   <>
+//     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/">
+//       Home
+//     </NavLink>
+//     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/allRoom">
+//      Rooms
+//     </NavLink>
+//      <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/galary">
+//       Galary
+//     </NavLink>
+//     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/myBooking">
+//       My Bookings
+//     </NavLink>
    
-    <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/contact">
-     ContactUs
-    </NavLink>
-  </>
-);
+//     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/contact">
+//      ContactUs
+//     </NavLink>
+//   </>
+// );
 
 const Navbar = () => {
+    const { user, Logout } = useContext(AuthContext);
   // theme ar jnno state
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "light"
@@ -45,7 +46,7 @@ const Navbar = () => {
 
   // end theme
 
-  const { user, Logout } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const handleLogOut = () => {
     Logout()
@@ -86,7 +87,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm  dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            {Links}
+            <Links></Links>
              {/*admin This site maker*/}
     {user?.email === "shawon505214@gmail.com" && (
       <NavLink
@@ -115,7 +116,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center  hidden lg:flex">
-        {Links}
+      <Links></Links>
 
           {/*admin This site maker*/}
     {user?.email === "shawon505214@gmail.com" && (

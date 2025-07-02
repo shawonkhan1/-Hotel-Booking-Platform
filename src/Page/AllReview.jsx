@@ -30,7 +30,7 @@ const Reviews = () => {
 
       
       <motion.h2
-  className="text-center mt-10 mb-15 heading text-2xl font-bold  text-blue-600 tracking-wide drop-shadow-md"
+  className="text-center mt-10 mb-15 heading text-4xl font-bold  text-blue-600 tracking-wide drop-shadow-md"
   initial={{ opacity: 0, scale: 0.8 }}
   animate={{ opacity: 1, scale: [1, 1.1, 1] }}
   transition={{
