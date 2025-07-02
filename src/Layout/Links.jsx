@@ -16,7 +16,13 @@ const Links = () => {
       <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/galary">
         Galary
       </NavLink>
-      {user && (
+      <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/ourservice">
+        Our Service
+      </NavLink>
+      <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/aboutus">
+      AboutUs
+      </NavLink>
+      {/* {user && (
         <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/myBooking">
           My Bookings
         </NavLink>
@@ -24,6 +30,11 @@ const Links = () => {
       {user && (
         <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/contact">
         Contact Us
+      </NavLink>
+      )} */}
+      {user && (
+        <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/dashbord/home">
+       DashBord
       </NavLink>
       )}
       

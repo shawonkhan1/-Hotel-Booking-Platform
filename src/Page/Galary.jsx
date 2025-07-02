@@ -78,11 +78,7 @@ const Galary = () => {
         ))}
       </div>
 
-        {/* extra colleciton */}
-      <div className="mt-10 flex justify-center">
-        <DancePage></DancePage>
-        
-      </div>
+      
 
       <div className="flex justify-center mt-10">
         <Link to="/">

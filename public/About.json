@@ -1,0 +1,32 @@
+{
+  "header": {
+    "title": "About Easy Stay",
+    "description": "At Easy Stay, we redefine the way you experience travel and hospitality. Whether you're planning a relaxing vacation, a business trip, or a weekend escape, our platform connects you with the most comfortable and affordable accommodations across the country."
+  },
+  "cards": [
+    {
+      "icon": "FaBullseye",
+      "title": "Our Vision",
+      "description": "To become the go-to hotel booking platform that guarantees ease, trust, and value with every stay.",
+      "delay": 0
+    },
+    {
+      "icon": "FaHandshake",
+      "title": "Our Commitment",
+      "description": "We are committed to providing a seamless booking experience, verified guest reviews, and 24/7 customer support to ensure your peace of mind.",
+      "delay": 0.1
+    },
+    {
+      "icon": "FaHotel",
+      "title": "Why Easy Stay",
+      "description": "With curated listings, personalized recommendations, and exclusive deals, Easy Stay makes finding the perfect room truly effortless.",
+      "delay": 0.2
+    }
+  ],
+  "footer": {
+    "icon": "FaUsers",
+    "title": "Trusted by thousands of travelers",
+    "description": "Join our growing community of satisfied guests who trust Easy Stay for their every journey. Experience hospitality that feels like home.",
+    "delay": 0.3
+  }
+}

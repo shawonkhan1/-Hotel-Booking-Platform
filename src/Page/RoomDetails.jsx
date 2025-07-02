@@ -98,7 +98,7 @@ const RoomDetails = () => {
           features: { ...room.features, availability: false },
         });
         setModalOpen(false);
-        navigate("/myBooking");
+        navigate("/dashbord/dashbordHome");
       })
       .catch((err) => {
         toast.error(err.response?.data?.error || " Booking failed. Try again.");

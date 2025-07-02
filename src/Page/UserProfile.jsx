@@ -35,7 +35,7 @@ const UserProfile = () => {
           </h2>
           <p className="text-gray-500">{user?.email}</p>
 
-          <Link to="/updateprofile">
+          <Link to="/dashbord/updateprofile">
             <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all">
               Update
             </button>
@@ -50,9 +50,9 @@ const UserProfile = () => {
 
       {/* Back Button */}
       <div className="flex justify-center mt-10">
-        <Link to="/">
+        <Link to="/dashbord/home">
           <button className="btn btn-p hover:shadow-[0_0_8px_2px_#97F9FF] transition-all">
-            Back To Home
+            Back To Dashbord
           </button>
         </Link>
       </div>

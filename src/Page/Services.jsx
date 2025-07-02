@@ -13,7 +13,7 @@ const Services = () => {
   }, []);
 
   return (
-    <section className="py-16 bg-gray-100 rounded-2xl">
+    <section className="py-16   bg-gray-100 rounded-2xl">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <motion.h2
       className="text-4xl heading font-bold mb-6 text-blue-600"

@@ -89,14 +89,14 @@ const Navbar = () => {
           >
             <Links></Links>
              {/*admin This site maker*/}
-    {user?.email === "shawon505214@gmail.com" && (
+    {/* {user?.email === "shawon505214@gmail.com" && (
       <NavLink
         className="text-[20px] p-2 text-base-content hover:text-primary"
         to="/admin"
       >
         Admin
       </NavLink>
-    )}
+    )} */}
               {/*admin This site maker*/}
           </ul>
         </div>
@@ -119,14 +119,14 @@ const Navbar = () => {
       <Links></Links>
 
           {/*admin This site maker*/}
-    {user?.email === "shawon505214@gmail.com" && (
+    {/* {user?.email === "shawon505214@gmail.com" && (
       <NavLink
         className="text-[20px] p-2 text-base-content hover:text-primary"
         to="/admin"
       >
         Admin
       </NavLink>
-    )}
+    )} */}
        {/*admin This site maker*/}
 
       </div>
@@ -204,7 +204,7 @@ const Navbar = () => {
             className="tooltip tooltip-right"
             data-tip={user?.displayName || "User"}
           >
-            <Link to="/profile">
+            <Link to="/dashbord/home">
               <div className="avatar">
                 <div className="ring-primary  ring-offset-base-100 w-7 rounded-full ring-2 ring-offset-2">
                   <img src={user?.photoURL || "https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"} alt="User Avatar" />

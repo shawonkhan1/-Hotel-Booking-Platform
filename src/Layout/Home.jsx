@@ -11,7 +11,6 @@ import { motion } from "framer-motion";
 import DancePage from "../Page/DancePage";
 import WhyChoosUs from "../Page/WhyChoosUs";
 
-
 const Home = () => {
   return (
     <>
@@ -25,29 +24,20 @@ const Home = () => {
         <div className="mt-5">
           <FeaturedRoom />
         </div>
-        
 
-        <div className="mt-10">
-          <Services />
-        </div>
-
-
-    <div>
+        <div>
           <WhyChoosUs></WhyChoosUs>
         </div>
-        
 
         <div className="mt-10">
           <Faq />
         </div>
 
-        
-
         <div>
           <AllReview />
         </div>
 
-    {/* Maps */}
+        {/* Maps */}
         <div className="mt-10">
           <motion.h2
             initial={{
@@ -72,7 +62,7 @@ const Home = () => {
               damping: 10,
             }}
             whileHover={{ scale: 1.1, rotate: 5, color: "#1E40AF" }}
-            className="text-4xl  heading font-extrabold mb-15 text-center select-none cursor-pointer"
+            className="text-4xl md:text-5xl heading font-bold text-center text-blue-600 mb-15 tracking-wide leading-tight drop-shadow-sm"
           >
             Our Location
           </motion.h2>
@@ -81,9 +71,6 @@ const Home = () => {
             <Maps />
           </div>
         </div>
-
-
-
       </div>
     </>
   );

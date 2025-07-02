@@ -28,7 +28,7 @@ const WhyChoosUs = () => {
             className="w-16  h-16 mb-4"
           />
          </div>
-          <h3 className="text-xl font-semibold mb-2">Secure Booking</h3>
+          <h3 className="text-xl text-gray-600 font-semibold mb-2">Secure Booking</h3>
           <p className="text-gray-600">
             We ensure your data and transactions are fully encrypted and protected with industry-grade security.
           </p>
@@ -43,7 +43,7 @@ const WhyChoosUs = () => {
             className="w-16 h-16 mb-4"
           />
           </div>
-          <h3 className="text-xl font-semibold mb-2">Best Price Guarantee</h3>
+          <h3 className="text-xl text-gray-600 font-semibold mb-2">Best Price Guarantee</h3>
           <p className="text-gray-600">
             We offer the most competitive prices with exclusive discounts on selected rooms and services.
           </p>
@@ -62,7 +62,7 @@ const WhyChoosUs = () => {
             className="w-16 h-16 mb-4"
           />
           </div>
-          <h3 className="text-xl font-semibold mb-2">24/7 Customer Support</h3>
+          <h3 className="text-xl text-gray-600 font-semibold mb-2">24/7 Customer Support</h3>
           <p className="text-gray-600">
             Our support team is available around the clock to assist you with any issues or inquiries.
           </p>

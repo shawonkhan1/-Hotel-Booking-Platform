@@ -19,7 +19,7 @@ const UpdateProfile = () => {
     updateUserProfiles(name, photoURL)
       .then(() => {
         toast.success("Successfully updated your profile");
-        navigate("/");
+        navigate("/dashbord");
       })
       .catch((error) => {
         alert(error.message);

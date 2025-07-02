@@ -32,7 +32,7 @@ const FeaturedRoom = () => {
 
         const sortedRooms = data
           .sort((a, b) => (counts[b._id] || 0) - (counts[a._id] || 0))
-          .slice(0, 6);
+          .slice(0, 8);
 
         setRooms(sortedRooms);
         setReviewsCount(counts);
@@ -74,7 +74,7 @@ const FeaturedRoom = () => {
         Room
       </motion.h1>
 
-      <div className="grid grid-cols-1 text-black md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 text-black md:grid-cols-2 lg:grid-cols-4 gap-6">
         {rooms.map((room) => (
           <Link
             to={`/details/${room._id}`}

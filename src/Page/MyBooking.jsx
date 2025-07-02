@@ -13,8 +13,6 @@ import { Helmet } from "react-helmet";
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
 
-  console.log("my booking page user", user.accessToken);
-
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
@@ -23,8 +21,6 @@ const MyBooking = () => {
   const [showModal, setShowModal] = useState(false);
   const [reviewData, setReviewData] = useState({ rating: 0, comment: "" });
 
-  // jwt adding to  headers{Authorization:{Bearer ${User.accessToken}}}
-
   const fetchBookings = () => {
     axios
       .get(`https://assigment-11-server-side.vercel.app/bookings/${user.email}`, {
@@ -32,7 +28,6 @@ const MyBooking = () => {
           Authorization: `Bearer ${user.accessToken}`,
         },
       })
-
       .then((res) => {
         setBookings(res.data);
         setLoading(false);
@@ -46,8 +41,6 @@ const MyBooking = () => {
   useEffect(() => {
     if (user?.email) fetchBookings();
   }, [user]);
-
-  // cancel
 
   const handleCancel = (booking) => {
     const cancelDeadline = moment(booking.bookedAt).subtract(1, "days");
@@ -99,7 +92,6 @@ const MyBooking = () => {
     setUpdatedDate(booking.bookedAt?.slice(0, 10));
   };
 
-  // update
   const handleUpdate = (id) => {
     const selectedDate = moment(updatedDate);
     if (selectedDate.isBefore(moment().startOf("day"))) {
@@ -127,7 +119,6 @@ const MyBooking = () => {
     setShowModal(true);
   };
 
-  // revew
   const handleSubmitReview = () => {
     const review = {
       username: user.displayName,
@@ -158,7 +149,7 @@ const MyBooking = () => {
       </Helmet>
       <div className="max-w-6xl mx-auto px-4 py-6">
         <motion.h2
-          className="text-3xl heading mt-10 font-bold text-blue-600 mb-12 text-center"
+          className="text-3xl  heading mt-10 font-bold text-blue-600 mb-12 "
           initial={{ opacity: 0, y: -30, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -167,7 +158,7 @@ const MyBooking = () => {
         </motion.h2>
 
         <div className="overflow-x-auto rounded shadow">
-          <table className="table w-full">
+          <table className="table w-full min-w-[600px]">
             <thead className="bg-gray-200 text-black">
               <tr>
                 <th>Image</th>
@@ -191,12 +182,12 @@ const MyBooking = () => {
                   <td>৳{booking.price}</td>
                   <td>
                     {editingId === booking._id ? (
-                      <div className="flex items-center gap-2 ">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                         <input
                           type="date"
                           value={updatedDate}
                           onChange={(e) => setUpdatedDate(e.target.value)}
-                          className="border px-2 py-1 rounded"
+                          className="border px-2 py-1 rounded w-full sm:w-auto"
                           min={moment().format("YYYY-MM-DD")}
                         />
                         <button
@@ -216,25 +207,27 @@ const MyBooking = () => {
                       new Date(booking.bookedAt).toLocaleDateString()
                     )}
                   </td>
-                  <td className="flex flex-wrap gap-2 md:mt-5">
-                    <button
-                      onClick={() => handleCancel(booking)}
-                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={() => handleOpenReviewModal(booking.roomId)}
-                      className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded"
-                    >
-                      Review
-                    </button>
-                    <button
-                      onClick={() => handleEditClick(booking)}
-                      className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
-                    >
-                      Update Date
-                    </button>
+                  <td>
+                    <div className="flex flex-col sm:flex-row flex-wrap gap-2 mt-2 sm:mt-0">
+                      <button
+                        onClick={() => handleCancel(booking)}
+                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={() => handleOpenReviewModal(booking.roomId)}
+                        className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded"
+                      >
+                        Review
+                      </button>
+                      <button
+                        onClick={() => handleEditClick(booking)}
+                        className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
+                      >
+                        Update Date
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -243,7 +236,6 @@ const MyBooking = () => {
         </div>
 
         {/* Review Modal */}
-
         <AnimatePresence>
           {showModal && (
             <motion.div

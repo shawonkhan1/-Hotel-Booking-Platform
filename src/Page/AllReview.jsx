@@ -29,7 +29,7 @@ const Reviews = () => {
 
 
       
-      <motion.h2
+      {/* <motion.h2
   className="text-center mt-10 mb-15 heading text-4xl font-bold  text-blue-600 tracking-wide drop-shadow-md"
   initial={{ opacity: 0, scale: 0.8 }}
   animate={{ opacity: 1, scale: [1, 1.1, 1] }}
@@ -41,7 +41,10 @@ const Reviews = () => {
   }}
 >
   ✨ User Reviews ✨
-</motion.h2>
+</motion.h2> */}
+  <h2 className="text-4xl md:text-5xl heading font-bold text-center text-blue-600 mb-15 tracking-wide leading-tight drop-shadow-sm">
+          User Reviews
+        </h2>
 
 
       <Marquee pauseOnHover={true} gradient={false} speed={50}>
