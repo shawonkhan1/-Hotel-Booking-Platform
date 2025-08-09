@@ -34,9 +34,9 @@ const Galary = () => {
     </Helmet>
     <div className="max-w-6xl mx-auto p-6">
       <motion.h1
-        className="text-4xl heading md:text-4xl  tracking-tight  text-transparent select-none   drop-shadow-lg
+        className="text-4xl heading md:text-4xl  tracking-tight  select-none   drop-shadow-lg
         font-bold  bg-clip-text mb-12  text-center
-        bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 "
+       text-blue-600"
         initial={{ opacity: 0, y: -50, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -53,7 +53,7 @@ const Galary = () => {
             className={`px-4 py-2 rounded-md font-semibold ${
               category === cat
                 ? "bg-blue-600 text-white"
-                : "bg-gray-300 hover:bg-gray-400"
+                : "bg-gray-400 hover:bg-gray-700"
             }`}
           >
             {cat.charAt(0).toUpperCase() + cat.slice(1)}

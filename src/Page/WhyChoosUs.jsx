@@ -3,24 +3,17 @@ import { motion } from "framer-motion";
 
 const WhyChoosUs = () => {
   return (
-    <section className="bg-gray-100 mt-10 rounded-2xl py-12 px-6 md:px-20">
-    <motion.h2
-      className="text-4xl text-center heading font-bold mb-12 text-blue-600"
-      animate={{
-        x: ['-20px', '20px', '-20px'],
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      }}
+    <section className="  rounded-2xl py-12 px-6 md:px-20">
+    <h2
+      className="text-4xl text-center heading font-bold mb-14 text-blue-600"
+    
     >
         Why Book With Us?
-    </motion.h2>
+    </h2>
 
       <div className="grid gap-8 md:grid-cols-3">
         {/* Card 1 */}
-        <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <div className="bg-gray-50 p-10 rounded-2xl shadow hover:shadow-lg transition">
          <div className='flex justify-center'>
              <img
             src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
@@ -35,7 +28,7 @@ const WhyChoosUs = () => {
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <div className="bg-gray-50 p-10 rounded-2xl shadow hover:shadow-lg transition">
           <div className='flex justify-center'>
 <img
             src="https://cdn-icons-png.flaticon.com/512/3565/3565418.png"
@@ -50,7 +43,7 @@ const WhyChoosUs = () => {
         </div>
 
         {/* Card 3 */}
-        <div className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+        <div className="bg-gray-50 p-10 rounded-2xl shadow hover:shadow-lg transition">
           <div className='flex justify-center'>
 <img
             src="https://cdn-icons-png.flaticon.com/512/4774/4774696.png"

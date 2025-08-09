@@ -26,26 +26,9 @@ const Reviews = () => {
 
   return (
     <div className="py-4">
-
-
-      
-      {/* <motion.h2
-  className="text-center mt-10 mb-15 heading text-4xl font-bold  text-blue-600 tracking-wide drop-shadow-md"
-  initial={{ opacity: 0, scale: 0.8 }}
-  animate={{ opacity: 1, scale: [1, 1.1, 1] }}
-  transition={{
-    duration: 2,
-    repeat: Infinity,
-    repeatType: 'loop',
-    ease: 'easeInOut',
-  }}
->
-  ✨ User Reviews ✨
-</motion.h2> */}
-  <h2 className="text-4xl md:text-5xl heading font-bold text-center text-blue-600 mb-15 tracking-wide leading-tight drop-shadow-sm">
-          User Reviews
-        </h2>
-
+      <h2 className="text-4xl mt-5 heading font-bold text-center text-blue-600 mb-12 tracking-wide leading-tight drop-shadow-sm">
+        User Reviews
+      </h2>
 
       <Marquee pauseOnHover={true} gradient={false} speed={50}>
         {reviews.map((review) => (
@@ -57,9 +40,15 @@ const Reviews = () => {
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.05 }}
           >
-            <p className="font-semibold text-black heading">{review.username}</p>
-            <p className="text-yellow-500 description">Rating: {"⭐".repeat(review.rating)}</p>
-            <p className="italic description text-gray-700 mt-2">"{review.comment}"</p>
+            <p className="font-semibold text-black heading">
+              {review.username}
+            </p>
+            <p className="text-yellow-500 description">
+              Rating: {"⭐".repeat(review.rating)}
+            </p>
+            <p className="italic description text-gray-700 mt-2">
+              "{review.comment}"
+            </p>
             <p className="text-xs description text-gray-500  mt-2">
               {new Date(review.createdAt).toLocaleString()}
             </p>

@@ -29,7 +29,7 @@ const Home = () => {
           <WhyChoosUs></WhyChoosUs>
         </div>
 
-        <div className="mt-10">
+        <div className="">
           <Faq />
         </div>
 
@@ -39,33 +39,9 @@ const Home = () => {
 
         {/* Maps */}
         <div className="mt-10">
-          <motion.h2
-            initial={{
-              opacity: 0,
-              y: 100,
-              scale: 0.5,
-              rotate: -10,
-              color: "#4F46E5",
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              rotate: 0,
-              color: "#2563EB",
-            }}
-            transition={{
-              duration: 1.5,
-              ease: "easeInOut",
-              type: "spring",
-              stiffness: 100,
-              damping: 10,
-            }}
-            whileHover={{ scale: 1.1, rotate: 5, color: "#1E40AF" }}
-            className="text-4xl md:text-5xl heading font-bold text-center text-blue-600 mb-15 tracking-wide leading-tight drop-shadow-sm"
-          >
+          <h2 className="text-4xl heading font-bold text-center text-blue-600 mb-15 tracking-wide leading-tight drop-shadow-sm">
             Our Location
-          </motion.h2>
+          </h2>
 
           <div style={{ height: "400px", width: "100%" }}>
             <Maps />

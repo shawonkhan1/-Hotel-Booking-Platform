@@ -61,15 +61,8 @@ const Rooms = () => {
     <div className="p-4 md:p-8">
       {/* Heading */}
       <motion.h1
-        animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="text-center heading text-4xl lg:text-5xl font-extrabold mb-10 bg-[linear-gradient(-45deg,#0ea5e9,#6366f1,#10b981,#ec4899)] bg-[length:300%_300%] bg-clip-text text-transparent tracking-tight leading-tight"
+       
+        className="text-center heading text-4xl lg:text-4xl font-extrabold mb-10  leading-tight text-blue-600 "
       >
         Find the Perfect Room for Your Stay
       </motion.h1>

@@ -13,23 +13,16 @@ const Services = () => {
   }, []);
 
   return (
-    <section className="py-16   bg-gray-100 rounded-2xl">
+    <section className="py-16  bg-base-100 rounded-2xl">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <motion.h2
-      className="text-4xl heading font-bold mb-6 text-blue-600"
-      animate={{
-        x: ['-20px', '20px', '-20px'],
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      }}
+        <h2
+      className="text-4xl pb-5 heading font-bold mb-6 text-blue-600"
+    
     >
       Our Services
-    </motion.h2>
+    </h2>
 
-        <p className="mb-12 description text-black text-2xl max-w-2xl mx-auto">
+        <p className="mb-12 description  text-2xl max-w-2xl mx-auto">
           The best features we offer for your hotel booking experience.
         </p>
 
