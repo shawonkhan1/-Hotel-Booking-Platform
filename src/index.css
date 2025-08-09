@@ -26,13 +26,13 @@
 
 [data-theme="light"] {
   /* light theme styles */
-  background-color: white;
+  background-color: 	#F9FAFB;
   color: black;
 }
 
 [data-theme="synthwave"] {
   /* synthwave theme styles */
-  background-color: black;
+  background-color: 	#1E1E1E;
   color: white;
 }
 

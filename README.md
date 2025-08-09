@@ -61,7 +61,9 @@ A modern and feature-rich hotel booking application built using **React**, **Vit
 
 
 ---
-![Hotel Booking Platform Screenshot](https://i.ibb.co.com/7tgtgds0/Screenshot-2025-08-09-123925.png)
+
+
+![Hotel Booking Platform Screenshot](https://i.ibb.co/7tgtgds0/Screenshot-2025-08-09-123925.png)
 
 
 
