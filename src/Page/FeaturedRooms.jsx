@@ -8,6 +8,9 @@ const FeaturedRoom = () => {
   const [reviewsCount, setReviewsCount] = useState({});
   const [loading, setLoading] = useState(true);
 
+  
+
+
   useEffect(() => {
     const fetchRoomsAndReviews = async () => {
       try {
@@ -68,7 +71,7 @@ const FeaturedRoom = () => {
                 transition: { duration: 0.3 },
               }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white border border-gray-200 rounded-2xl p-5 shadow-md flex flex-col h-full transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer "
+              className={`bg-white   border border-gray-200 rounded-2xl p-5 shadow-md flex flex-col h-full transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer `}
             >
               <img
                 src={room.cover}

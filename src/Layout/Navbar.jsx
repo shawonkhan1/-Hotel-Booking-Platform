@@ -6,26 +6,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
 import Links from "./Links";
 
-// export const Links = (
-//   <>
-//     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/">
-//       Home
-//     </NavLink>
-//     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/allRoom">
-//      Rooms
-//     </NavLink>
-//      <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/galary">
-//       Galary
-//     </NavLink>
-//     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/myBooking">
-//       My Bookings
-//     </NavLink>
-   
-//     <NavLink className="text-[20px] p-2 text-base-content hover:text-primary" to="/contact">
-//      ContactUs
-//     </NavLink>
-//   </>
-// );
+
 
 const Navbar = () => {
     const { user, Logout } = useContext(AuthContext);
